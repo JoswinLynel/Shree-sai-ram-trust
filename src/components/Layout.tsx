@@ -1,0 +1,267 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Phone, MapPin, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About Us' },
+    { path: '/programs', label: 'Programs' },
+    { path: '/gallery', label: 'Gallery' },
+    { path: '/donate', label: 'Donate' },
+    { path: '/contact', label: 'Contact' },
+  ];
+
+  const isActive = (path: string) => location.pathname === path;
+
+  return (
+    <div className="min-h-screen bg-cream flex flex-col">
+      {/* Top Bar */}
+      <div className="bg-saffron text-white py-2 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-xs md:text-sm">
+          <div className="flex items-center gap-4 md:gap-6">
+            <a href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Phone size={14} />
+              <span className="hidden sm:inline">+91 98765 43210</span>
+            </a>
+            <a href="mailto:info@shreesairamtrust.org" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Mail size={14} />
+              <span className="hidden md:inline">info@shreesairamtrust.org</span>
+            </a>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <MapPin size={14} />
+            <span className="hidden sm:inline">Jhulelal Mandir Road, Ulhasnagar</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header 
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' 
+            : 'bg-white py-4'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-saffron to-saffron-dark rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-white font-heading font-bold text-lg md:text-xl">ॐ</span>
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="font-heading font-bold text-lg md:text-xl text-espresso leading-tight">
+                Shree Sai Ram Trust
+              </h1>
+              <p className="text-xs text-taupe">Ulhasnagar, Maharashtra</p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isActive(link.path)
+                    ? 'bg-saffron text-white'
+                    : 'text-espresso hover:bg-saffron/10 hover:text-saffron'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden lg:block">
+            <Link
+              to="/donate"
+              className="px-6 py-2.5 bg-gradient-to-r from-saffron to-saffron-dark text-white rounded-full text-sm font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Donate Now
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-espresso hover:text-saffron transition-colors"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+      >
+        <div className="absolute inset-0 bg-black/50" onClick={() => setIsMenuOpen(false)} />
+        <div
+          className={`absolute right-0 top-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="p-6 pt-20">
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                    isActive(link.path)
+                      ? 'bg-saffron text-white'
+                      : 'text-espresso hover:bg-saffron/10 hover:text-saffron'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <Link
+                to="/donate"
+                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-saffron to-saffron-dark text-white rounded-xl font-medium"
+              >
+                Donate Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="flex-1">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-espresso text-white">
+        {/* Main Footer */}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* About Column */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-saffron rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold">ॐ</span>
+                </div>
+                <h3 className="font-heading font-bold text-lg">Shree Sai Ram Trust</h3>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed mb-4">
+                A sacred space dedicated to Sai Baba's teachings of love, compassion, and service to humanity. Join us in prayer and community.
+              </p>
+              <div className="flex gap-3">
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-saffron transition-colors">
+                  <Facebook size={16} />
+                </a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-saffron transition-colors">
+                  <Instagram size={16} />
+                </a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-saffron transition-colors">
+                  <Youtube size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-heading font-semibold text-gold mb-4">Quick Links</h4>
+              <ul className="space-y-2.5">
+                {navLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-white/70 text-sm hover:text-gold transition-colors flex items-center gap-2"
+                    >
+                      <span className="w-1 h-1 bg-gold rounded-full" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Programs */}
+            <div>
+              <h4 className="font-heading font-semibold text-gold mb-4">Daily Programs</h4>
+              <ul className="space-y-2.5 text-sm text-white/70">
+                <li className="flex justify-between">
+                  <span>Morning Aarti</span>
+                  <span className="text-gold">6:30 AM</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Afternoon Prasad</span>
+                  <span className="text-gold">12:00 PM</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Evening Satsang</span>
+                  <span className="text-gold">7:00 PM</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Closing Time</span>
+                  <span className="text-gold">8:00 PM</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-heading font-semibold text-gold mb-4">Contact Us</h4>
+              <ul className="space-y-3 text-sm text-white/70">
+                <li className="flex items-start gap-3">
+                  <MapPin size={16} className="text-saffron mt-0.5 flex-shrink-0" />
+                  <span>Jhulelal Mandir Road, Ulhasnagar, Maharashtra 421002</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone size={16} className="text-saffron flex-shrink-0" />
+                  <a href="tel:+919876543210" className="hover:text-gold transition-colors">+91 98765 43210</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail size={16} className="text-saffron flex-shrink-0" />
+                  <a href="mailto:info@shreesairamtrust.org" className="hover:text-gold transition-colors">info@shreesairamtrust.org</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-white/50">
+              <p>© {new Date().getFullYear()} Shree Sai Ram Trust. All rights reserved.</p>
+              <p>Made with devotion for the community</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
