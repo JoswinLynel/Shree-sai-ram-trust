@@ -80,8 +80,8 @@ export function HeroInteractives() {
 
     return (
         <>
-            {/* Absolute positioning for the buttons container at top right */}
-            <div className="absolute top-6 right-6 z-50 flex gap-3">
+            {/* Absolute positioning for the buttons container at top right, moved down to avoid navbar overlap */}
+            <div className="absolute top-28 right-6 z-50 flex gap-3">
                 {/* Music Button */}
                 <button
                     onClick={toggleMusic}
