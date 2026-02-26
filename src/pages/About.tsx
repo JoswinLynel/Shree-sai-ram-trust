@@ -33,9 +33,9 @@ export default function About() {
   }, []);
 
   const trustees = [
-    { name: 'Shri Ramchand Khatwani', role: 'President', image: '/images/trustee1.jpg' },
-    { name: 'Smt. Lata Khatwani', role: 'Secretary', image: '/images/trustee2.jpg' },
-    { name: 'Shri Mohan Khatwani', role: 'Treasurer', image: '/images/trustee3.jpg' },
+    { name: 'Shri Sunil Somani', role: 'President', image: '/images/trustee1.jpg' },
+    { name: 'Smt. Meenakshi Iyer', role: 'Secretary', image: '/images/trustee2.jpg' },
+    { name: 'Shri Rajesh Patel', role: 'Treasurer', image: '/images/trustee3.jpg' },
   ];
 
   const values = [
@@ -50,9 +50,9 @@ export default function About() {
       {/* Page Header */}
       <div className="relative py-20 md:py-28 bg-espresso">
         <div className="absolute inset-0 opacity-20">
-          <img 
-            src="/images/about_interior.jpg" 
-            alt="Background" 
+          <img
+            src="/images/about_interior.jpg"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -91,14 +91,14 @@ export default function About() {
             </div>
             <div className="animate-item relative">
               <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="/images/hero_courtyard.jpg" 
-                  alt="Temple" 
+                <img
+                  src="/images/hero_courtyard.jpg"
+                  alt="Temple"
                   className="rounded-2xl shadow-lg w-full h-48 md:h-64 object-cover"
                 />
-                <img 
-                  src="/images/events_group.jpg" 
-                  alt="Community" 
+                <img
+                  src="/images/events_group.jpg"
+                  alt="Community"
                   className="rounded-2xl shadow-lg w-full h-48 md:h-64 object-cover mt-8"
                 />
               </div>
@@ -147,8 +147,8 @@ export default function About() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="animate-item bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-14 h-14 bg-saffron/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -179,14 +179,14 @@ export default function About() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {trustees.map((trustee, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="animate-item text-center group"
               >
                 <div className="relative w-40 h-40 mx-auto mb-6">
                   <div className="absolute inset-0 bg-saffron rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 scale-110" />
-                  <img 
-                    src={trustee.image} 
+                  <img
+                    src={trustee.image}
                     alt={trustee.name}
                     className="w-full h-full object-cover rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300"
                   />
@@ -199,24 +199,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 md:py-20 bg-saffron">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '15+', label: 'Years of Service' },
-              { value: '1000+', label: 'Daily Devotees' },
-              { value: '50+', label: 'Annual Events' },
-              { value: '10000+', label: 'Lives Touched' },
-            ].map((stat, i) => (
-              <div key={i} className="animate-item">
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</p>
-                <p className="text-white/80 text-sm md:text-base">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

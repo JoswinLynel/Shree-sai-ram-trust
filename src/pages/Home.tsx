@@ -2,10 +2,12 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  ChevronRight, Heart, Users, Calendar, Music, 
-  Utensils, MapPin, ArrowRight 
+import {
+  ChevronRight, Heart, Users, Calendar, Music,
+  Utensils, Image, ArrowRight
 } from 'lucide-react';
+import { TravelCard } from '@/components/ui/card-7';
+import { HeroInteractives } from '@/components/ui/hero-interactives';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     // Hero animations
-    gsap.fromTo('.hero-content', 
+    gsap.fromTo('.hero-content',
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 }
     );
@@ -55,26 +57,27 @@ export default function Home() {
   }, []);
 
   const programs = [
-    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings' },
-    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution' },
-    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse' },
+    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings and sacred morning prayers', image: '/images/gallery_aarti.jpg' },
+    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution bringing everyone together in service', image: '/images/gallery_prasad.jpg' },
+    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse to end the day in peace', image: '/images/gallery_bhajan.jpg' },
   ];
 
   const events = [
-    { title: 'Ram Navami', date: 'April 6, 2025', image: '/images/gallery_ramnavami.jpg' },
-    { title: 'Guru Purnima', date: 'July 10, 2025', image: '/images/gallery_gurupurnima.jpg' },
-    { title: 'Sai Baba Punyatithi', date: 'October 15, 2025', image: '/images/gallery_bhajan.jpg' },
+    { title: 'Ram Navami', date: 'April 6, 2025', image: '/images/event_ramnavami.png', overview: 'Celebrate the birth of Lord Rama with special prayers, devotional songs, and community prasad distribution.' },
+    { title: 'Guru Purnima', date: 'July 10, 2025', image: '/images/event_gurupurnima.png', overview: 'Honor the sacred guru-disciple tradition with ceremonies, offerings, and heartfelt gratitude.' },
+    { title: 'Sai Baba Punyatithi', date: 'October 15, 2025', image: '/images/event_punyatithi.png', overview: 'Commemorate Sai Baba\'s legacy with special bhajans, 108 lamp ceremony, and community seva.' },
   ];
 
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center">
+        <HeroInteractives />
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
-            src="/images/hero_courtyard.jpg" 
-            alt="Temple Courtyard" 
+          <img
+            src="/images/hero_saibaba.png"
+            alt="Sai Baba"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/50 to-transparent" />
@@ -87,16 +90,16 @@ export default function Home() {
               <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
               Welcome to Shree Sai Ram Trust
             </div>
-            
+
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               Where Devotion Meets{' '}
               <span className="text-gold">Daily Life</span>
             </h1>
-            
+
             <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
               A sacred space for prayer, community, and service. Join daily aarti, weekly satsangs, and celebrations that bring us together.
             </p>
-            
+
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/programs"
@@ -143,15 +146,32 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <div className="animate-item relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/images/about_interior.jpg" 
-                  alt="Temple Interior" 
+              <div
+                className="relative rounded-3xl overflow-hidden shadow-2xl cursor-pointer transform-style-3d"
+                onMouseMove={(e) => {
+                  const el = e.currentTarget;
+                  const { left, top, width, height } = el.getBoundingClientRect();
+                  const x = e.clientX - left;
+                  const y = e.clientY - top;
+                  const rotateX = ((y - height / 2) / (height / 2)) * -6;
+                  const rotateY = ((x - width / 2) / (width / 2)) * 6;
+                  el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+                  el.style.transition = 'transform 0.1s ease-out';
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                  el.style.transition = 'transform 0.4s ease-in-out';
+                }}
+              >
+                <img
+                  src="/images/about_interior.jpg"
+                  alt="Temple Interior"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />
               </div>
               {/* Floating Card */}
-              <div className="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8 bg-white rounded-2xl shadow-xl p-6 max-w-[200px]">
+              <div className="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8 bg-white rounded-2xl shadow-xl p-6 max-w-[200px] z-10">
                 <div className="text-4xl font-bold text-saffron mb-1">15+</div>
                 <p className="text-taupe text-sm">Years of serving the community with devotion</p>
               </div>
@@ -171,7 +191,7 @@ export default function Home() {
               <p className="text-taupe/80 leading-relaxed mb-8">
                 Our temple is dedicated to Sai Baba's teachings of love, compassion, and service to humanity. Through daily prayers, community meals, and charitable activities, we strive to make a positive impact on society.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {[
                   { icon: Heart, label: 'Selfless Service' },
@@ -215,16 +235,46 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {programs.map((program, i) => (
-              <div 
-                key={i} 
-                className="animate-item group bg-cream rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              <div
+                key={i}
+                className="animate-item group relative rounded-3xl overflow-hidden h-[380px] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="w-14 h-14 bg-saffron/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-saffron group-hover:scale-110 transition-all duration-300">
-                  <program.icon size={28} className="text-saffron group-hover:text-white transition-colors" />
+                {/* Background Image */}
+                <img
+                  src={program.image}
+                  alt={program.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+                {/* Content */}
+                <div className="relative h-full flex flex-col justify-between p-7">
+                  {/* Top: Time Badge */}
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
+                      <div className="w-2 h-2 bg-gold rounded-full animate-pulse" />
+                      <span className="text-white text-sm font-semibold tracking-wide">{program.time}</span>
+                    </div>
+                    <div className="w-11 h-11 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center group-hover:bg-saffron group-hover:border-saffron transition-all duration-300">
+                      <program.icon size={22} className="text-white" />
+                    </div>
+                  </div>
+
+                  {/* Bottom: Title & Description */}
+                  <div>
+                    <h3 className="font-heading text-2xl font-bold text-white mb-2 group-hover:translate-x-1 transition-transform duration-300">
+                      {program.title}
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed max-w-[90%] group-hover:text-white/90 transition-colors duration-300">
+                      {program.desc}
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-gold text-sm font-medium opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <span>Learn More</span>
+                      <ArrowRight size={14} />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-espresso mb-2">{program.title}</h3>
-                <p className="text-saffron font-medium mb-3">{program.time}</p>
-                <p className="text-taupe text-sm">{program.desc}</p>
               </div>
             ))}
           </div>
@@ -264,35 +314,19 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {events.map((event, i) => (
-              <div 
-                key={i} 
-                className="animate-item group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 bg-saffron text-white px-3 py-1 rounded-full text-sm font-medium">
-                    <Calendar size={14} className="inline mr-1" />
-                    {event.date}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-heading text-xl font-semibold text-espresso mb-2">{event.title}</h3>
-                  <p className="text-taupe text-sm mb-4">
-                    Join us for special prayers, bhajans, and community prasad distribution.
-                  </p>
-                  <Link
-                    to="/programs"
-                    className="inline-flex items-center gap-1 text-saffron font-medium text-sm hover:gap-2 transition-all"
-                  >
-                    Learn More
-                    <ChevronRight size={16} />
-                  </Link>
-                </div>
-              </div>
+              <TravelCard
+                key={i}
+                className="animate-item max-w-full h-[420px]"
+                imageUrl={event.image}
+                imageAlt={event.title}
+                logo={<Calendar className="h-5 w-5 text-white/80" />}
+                title={event.title}
+                location={event.date}
+                overview={event.overview}
+                price={event.date.split(',')[0]}
+                pricePeriod={event.date.split(',')[1]?.trim() || ''}
+                onBookNow={() => window.location.href = '/donate'}
+              />
             ))}
           </div>
         </div>
@@ -301,28 +335,28 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="/images/closing_lamps.jpg" 
-            alt="Temple Lamps" 
+          <img
+            src="/images/closing_lamps.jpg"
+            alt="Temple Lamps"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-espresso/70" />
         </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 text-center">
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 text-center" ref={(el) => { if (el) { gsap.fromTo(el.children, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 80%" } }) } }}>
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-6">
-            Step Into the <span className="text-gold">Light</span>
+            Witness Our <span className="text-gold animate-pulse inline-block">Devotion</span>
           </h2>
           <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Visit us this week. Bring a prayer, a question, or simply your presence. Everyone is welcome at Shree Sai Ram Trust.
+            Explore our gallery to see the vibrant celebrations, peaceful prayers, and the community that makes Shree Sai Ram Trust special.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              to="/contact"
+              to="/gallery"
               className="px-8 py-4 bg-saffron text-white rounded-full font-medium hover:bg-saffron-dark transition-all duration-300 shadow-lg"
             >
-              <MapPin size={18} className="inline mr-2" />
-              Plan Your Visit
+              <Image size={18} className="inline mr-2" />
+              View Gallery
             </Link>
             <Link
               to="/donate"

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
+import {
   MapPin, Phone, Mail, Clock, Send, MessageCircle,
-  CheckCircle, Facebook, Instagram, Youtube 
+  CheckCircle, Facebook, Instagram, Youtube
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,9 +51,9 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: MapPin, title: 'Address', content: 'Jhulelal Mandir Road, Ulhasnagar, Maharashtra 421002', link: null },
-    { icon: Phone, title: 'Phone', content: '+91 98765 43210', link: 'tel:+919876543210' },
-    { icon: Mail, title: 'Email', content: 'info@shreesairamtrust.org', link: 'mailto:info@shreesairamtrust.org' },
+    { icon: MapPin, title: 'Address', content: 'Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar, Maharashtra 421001', link: null },
+    { icon: Phone, title: 'Phone', content: '+91 97308 02093', link: 'tel:+919730802093' },
+    { icon: Mail, title: 'Email', content: 'shreesairamtrust@gmail.com', link: 'mailto:shreesairamtrust@gmail.com' },
     { icon: Clock, title: 'Temple Timings', content: '5:30 AM - 8:30 PM (Daily)', link: null },
   ];
 
@@ -62,9 +62,9 @@ export default function Contact() {
       {/* Page Header */}
       <div className="relative py-20 md:py-28 bg-espresso">
         <div className="absolute inset-0 opacity-20">
-          <img 
-            src="/images/visit_courtyard.jpg" 
-            alt="Background" 
+          <img
+            src="/images/visit_courtyard.jpg"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -96,8 +96,8 @@ export default function Contact() {
 
               <div className="space-y-4 mb-8">
                 {contactInfo.map((info, i) => (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className="animate-item flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm"
                   >
                     <div className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -106,8 +106,8 @@ export default function Contact() {
                     <div>
                       <h3 className="font-medium text-espresso mb-1">{info.title}</h3>
                       {info.link ? (
-                        <a 
-                          href={info.link} 
+                        <a
+                          href={info.link}
                           className="text-taupe hover:text-saffron transition-colors"
                         >
                           {info.content}
@@ -124,26 +124,26 @@ export default function Contact() {
               <div className="animate-item">
                 <h3 className="font-medium text-espresso mb-4">Follow Us</h3>
                 <div className="flex gap-3">
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
                     <Facebook size={22} />
                   </a>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
                     <Instagram size={22} />
                   </a>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
                     <Youtube size={22} />
                   </a>
-                  <a 
-                    href="https://wa.me/919876543210" 
+                  <a
+                    href="https://wa.me/919876543210"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
@@ -158,7 +158,7 @@ export default function Contact() {
             <div className="animate-item">
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
                 <h3 className="font-heading text-xl font-semibold text-espresso mb-6">Send us a Message</h3>
-                
+
                 {isSubmitted ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -188,11 +188,11 @@ export default function Contact() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full px-4 py-3 bg-cream rounded-xl border-0 focus:ring-2 focus:ring-saffron text-espresso"
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 97308 02093"
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm text-taupe mb-2">Email Address</label>
                       <input
@@ -272,8 +272,8 @@ export default function Contact() {
                   <MapPin size={40} className="text-saffron" />
                 </div>
                 <h3 className="font-heading font-semibold text-espresso mb-2">Shree Sai Ram Trust</h3>
-                <p className="text-taupe text-sm mb-4">Jhulelal Mandir Road, Ulhasnagar</p>
-                <a 
+                <p className="text-taupe text-sm mb-4">Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar 421001</p>
+                <a
                   href="https://maps.google.com/?q=Jhulelal+Mandir+Road+Ulhasnagar"
                   target="_blank"
                   rel="noopener noreferrer"
