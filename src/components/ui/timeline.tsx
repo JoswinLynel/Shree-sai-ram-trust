@@ -6,7 +6,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+
 
 /* Right-pointing arrow SVG (play-button style) */
 const ArrowPointer = () => (
