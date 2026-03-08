@@ -6,10 +6,20 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
+/* Right-pointing arrow SVG (play-button style) */
+const ArrowPointer = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-saffron ml-0.5">
+        <path d="M8 5.14v14l11-7-11-7z" />
+    </svg>
+);
 
 interface TimelineEntry {
     title: string;
-    content: ReactNode;
+    leftContent?: ReactNode;
+    rightContent?: ReactNode;
+    content?: ReactNode; // fallback
 }
 
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
@@ -18,11 +28,23 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     const [height, setHeight] = useState(0);
 
     useEffect(() => {
-        if (ref.current) {
-            const rect = ref.current.getBoundingClientRect();
-            setHeight(rect.height);
-        }
-    }, [ref]);
+        const updateHeight = () => {
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                setHeight(rect.height);
+            }
+        };
+
+        // Delay to allow images and content to load
+        updateHeight();
+        const timer = setTimeout(updateHeight, 500);
+        window.addEventListener("resize", updateHeight);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener("resize", updateHeight);
+        };
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -34,53 +56,55 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
     return (
         <div
-            className="w-full bg-cream font-sans md:px-10"
+            className="w-full bg-cream font-sans overflow-hidden"
             ref={containerRef}
         >
-            <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10 text-center">
-                <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-espresso max-w-4xl mx-auto">
-                    The Journey of <span className="text-saffron">Sai Baba</span>
-                </h2>
-                <p className="text-taupe text-lg md:text-xl max-w-2xl mx-auto">
-                    Trace the divine milestones of a saint who preached the universal religion of love, tolerance, and service.
-                </p>
-            </div>
-
-            <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+            <div ref={ref} className="relative max-w-7xl mx-auto pb-20 px-4 md:px-8">
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className="flex justify-start pt-10 md:pt-40 md:gap-10"
+                        className="flex flex-col md:flex-row w-full justify-between items-center md:items-start pt-16 md:pt-40 relative z-10 group"
                     >
-                        <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-                            <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white flex items-center justify-center shadow-md">
-                                <div className="h-4 w-4 rounded-full bg-saffron border border-saffron-dark p-2 animate-pulse" />
+                        {/* Mobile Arrow + Title */}
+                        <div className="md:hidden flex flex-row items-center z-40 w-full mb-6 ml-12">
+                            <div className="h-11 w-11 flex-shrink-0 rounded-full bg-white flex items-center justify-center shadow-xl border border-saffron/20">
+                                <ArrowPointer />
                             </div>
-                            <h3 className="hidden md:block font-heading text-2xl md:pl-20 md:text-4xl font-bold text-espresso">
+                            <h3 className="font-heading text-3xl font-bold text-espresso pl-3">
                                 {item.title}
                             </h3>
                         </div>
 
-                        <div className="relative pl-20 pr-4 md:pl-4 w-full">
-                            <h3 className="md:hidden block font-heading text-2xl mb-4 text-left font-bold text-espresso">
+                        {/* Left Content (Images) */}
+                        <div className="relative w-full md:w-[45%] md:pr-12 md:pl-0 pl-14 md:text-right">
+                            <div className="md:hidden mb-6">{item.leftContent || item.content}</div>
+                            <div className="hidden md:block">{item.leftContent}</div>
+                        </div>
+
+                        {/* Desktop Center Dot */}
+                        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 h-14 w-14 rounded-full bg-white items-center justify-center shadow-xl z-40 top-40 group-hover:scale-110 transition-transform duration-300">
+                            <div className="h-5 w-5 rounded-full bg-saffron border-2 border-saffron-dark animate-pulse" />
+                        </div>
+
+                        {/* Right Content (Text) */}
+                        <div className="relative w-full md:w-[45%] md:pl-12 pl-14 mt-6 md:mt-0">
+                            <h3 className="hidden md:block font-heading text-4xl lg:text-5xl font-bold text-espresso mb-8">
                                 {item.title}
                             </h3>
-                            {item.content}{" "}
+                            <div className="md:hidden">{item.rightContent}</div>
+                            <div className="hidden md:block">{item.rightContent || item.content}</div>
                         </div>
                     </div>
                 ))}
+
+                {/* Vertical Line */}
                 <div
-                    style={{
-                        height: height + "px",
-                    }}
-                    className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-espresso/20 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
+                    style={{ height: height + "px" }}
+                    className="absolute md:left-1/2 left-9 md:-translate-x-1/2 top-10 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-espresso/20 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
                 >
                     <motion.div
-                        style={{
-                            height: heightTransform,
-                            opacity: opacityTransform,
-                        }}
-                        className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-saffron via-gold to-transparent from-[0%] via-[10%] rounded-full"
+                        style={{ height: heightTransform, opacity: opacityTransform }}
+                        className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-saffron via-gold to-transparent from-[0%] via-[20%] rounded-full"
                     />
                 </div>
             </div>

@@ -20,23 +20,16 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(sectionRef.current.querySelectorAll('.animate-item'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }
+    gsap.set('.animate-item', { opacity: 0, y: 20 });
+
+    ScrollTrigger.batch('.animate-item', {
+      interval: 0.05,
+      batchMax: 6,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', overwrite: true }),
+      start: 'top 95%',
+      end: 'bottom 5%',
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
@@ -84,36 +77,36 @@ export default function Contact() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left: Contact Info */}
             <div>
-              <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-sm font-medium mb-4">
+              <span className="animate-item inline-block px-3 py-1 bg-saffron/10 text-saffron rounded-full text-xs font-medium mb-3">
                 Contact Information
               </span>
-              <h2 className="animate-item font-heading text-3xl md:text-4xl font-bold text-espresso mb-6">
+              <h2 className="animate-item font-heading text-2xl md:text-3xl font-bold text-espresso mb-3">
                 Visit or <span className="text-saffron">Reach Out</span>
               </h2>
-              <p className="animate-item text-taupe leading-relaxed mb-8">
-                Whether you want to plan a visit, volunteer for seva, or have any questions about our programs, we are here to help. Feel free to contact us through any of the channels below.
+              <p className="animate-item text-taupe text-sm leading-relaxed mb-6">
+                Whether you want to plan a visit, volunteer for seva, or have any questions about our programs, we are here to help.
               </p>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-6">
                 {contactInfo.map((info, i) => (
                   <div
                     key={i}
-                    className="animate-item flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm"
+                    className="animate-item flex items-start gap-3 p-3 bg-white rounded-xl shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <info.icon size={22} className="text-saffron" />
+                    <div className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon size={18} className="text-saffron" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-espresso mb-1">{info.title}</h3>
+                      <h3 className="font-medium text-espresso text-sm mb-0.5">{info.title}</h3>
                       {info.link ? (
                         <a
                           href={info.link}
-                          className="text-taupe hover:text-saffron transition-colors"
+                          className="text-taupe text-sm hover:text-saffron transition-colors"
                         >
                           {info.content}
                         </a>
                       ) : (
-                        <p className="text-taupe">{info.content}</p>
+                        <p className="text-taupe text-sm">{info.content}</p>
                       )}
                     </div>
                   </div>
@@ -122,33 +115,33 @@ export default function Contact() {
 
               {/* Social Links */}
               <div className="animate-item">
-                <h3 className="font-medium text-espresso mb-4">Follow Us</h3>
-                <div className="flex gap-3">
+                <h3 className="font-medium text-espresso text-sm mb-3">Follow Us</h3>
+                <div className="flex gap-2">
                   <a
                     href="#"
-                    className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+                    className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
-                    <Facebook size={22} />
+                    <Facebook size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+                    className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
-                    <Instagram size={22} />
+                    <Instagram size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+                    className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
-                    <Youtube size={22} />
+                    <Youtube size={18} />
                   </a>
                   <a
                     href="https://wa.me/919876543210"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+                    className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
                   >
-                    <MessageCircle size={22} />
+                    <MessageCircle size={18} />
                   </a>
                 </div>
               </div>
@@ -264,40 +257,64 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="animate-item relative rounded-2xl overflow-hidden shadow-xl">
-            {/* Placeholder for Google Maps */}
-            <div className="aspect-video bg-cream flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-saffron/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MapPin size={40} className="text-saffron" />
+          <div className="animate-item grid lg:grid-cols-[1.2fr_1fr] gap-8 items-center">
+            {/* Left: Map */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+              <div className="aspect-[4/3]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d73.1631!3d19.2183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7959a26aaed67%3A0x8c62e24f82e53988!2sJhulelal%20Mandir%2C%20Ulhasnagar%2C%20Maharashtra%20421001!5e0!3m2!1sen!2sin!4v1709510400000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shree Sai Ram Trust Location"
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+
+            {/* Right: Address & Directions */}
+            <div className="space-y-4">
+              <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin size={20} className="text-saffron" />
+                  </div>
+                  <h3 className="font-heading text-lg font-semibold text-espresso">Shree Sai Ram Trust</h3>
                 </div>
-                <h3 className="font-heading font-semibold text-espresso mb-2">Shree Sai Ram Trust</h3>
-                <p className="text-taupe text-sm mb-4">Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar 421001</p>
+                <p className="text-taupe text-sm leading-relaxed mb-3">
+                  Bk/No. 246, Jhulelal Mandir Road,<br />
+                  Ulhasnagar, Maharashtra 421001
+                </p>
                 <a
                   href="https://maps.google.com/?q=Jhulelal+Mandir+Road+Ulhasnagar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-saffron text-white rounded-full font-medium hover:bg-saffron-dark transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-saffron text-white rounded-lg font-medium text-sm hover:bg-saffron-dark transition-all duration-300"
                 >
-                  <MapPin size={18} />
+                  <MapPin size={14} />
                   Open in Google Maps
                 </a>
               </div>
-            </div>
-          </div>
 
-          {/* Directions */}
-          <div className="animate-item mt-8 grid md:grid-cols-3 gap-6">
-            {[
-              { title: 'By Train', desc: 'Nearest station is Ulhasnagar Railway Station (2 km away)' },
-              { title: 'By Bus', desc: 'Regular buses from Kalyan, Thane, and Mumbai' },
-              { title: 'By Car', desc: 'Ample parking space available near the temple' },
-            ].map((item, i) => (
-              <div key={i} className="bg-cream rounded-xl p-6 text-center">
-                <h4 className="font-heading font-semibold text-espresso mb-2">{item.title}</h4>
-                <p className="text-taupe text-sm">{item.desc}</p>
-              </div>
-            ))}
+              {[
+                { title: 'By Train', desc: 'Nearest station is Ulhasnagar Railway Station (2 km away)' },
+                { title: 'By Bus', desc: 'Regular buses from Kalyan, Thane, and Mumbai' },
+                { title: 'By Car', desc: 'Ample parking space available near the temple' },
+              ].map((item, i) => (
+                <div key={i} className="bg-cream rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-7 h-7 bg-saffron/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-saffron text-xs font-bold">{i + 1}</span>
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-semibold text-espresso text-sm">{item.title}</h4>
+                    <p className="text-taupe text-xs">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

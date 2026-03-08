@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X, ZoomIn } from 'lucide-react';
+import { X } from 'lucide-react';
+import { ImageGallery } from '@/components/ui/image-gallery';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,23 +12,18 @@ export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(sectionRef.current.querySelectorAll('.animate-item'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }
+    gsap.set('.animate-item', { opacity: 0, y: 30 });
+
+    ScrollTrigger.batch('.animate-item', {
+      interval: 0.1,
+      batchMax: 3,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      start: 'top 85%',
+      end: 'bottom 15%',
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
@@ -35,18 +31,22 @@ export default function Gallery() {
   }, []);
 
   const galleryImages = [
-    { src: '/images/gallery_bhajan.jpg', title: 'Sai Bhajan Program', category: 'spiritual', desc: 'Devotees singing devotional songs' },
-    { src: '/images/gallery_ramnavami.jpg', title: 'Ram Navami Celebration', category: 'festival', desc: 'Grand festival celebration' },
-    { src: '/images/gallery_prasad.jpg', title: 'Community Prasad', category: 'seva', desc: 'Serving food to devotees' },
-    { src: '/images/gallery_aarti.jpg', title: 'Evening Aarti', category: 'spiritual', desc: 'Traditional lamp ceremony' },
-    { src: '/images/gallery_gurupurnima.jpg', title: 'Guru Purnima', category: 'festival', desc: 'Honoring spiritual teachers' },
-    { src: '/images/events_group.jpg', title: 'Community Gathering', category: 'community', desc: 'Devotees coming together' },
-    { src: '/images/hero_courtyard.jpg', title: 'Temple Courtyard', category: 'temple', desc: 'Main temple courtyard' },
-    { src: '/images/about_interior.jpg', title: 'Temple Interior', category: 'temple', desc: 'Beautiful temple interior' },
-    { src: '/images/seva_offering.jpg', title: 'Flower Offering', category: 'seva', desc: 'Preparing offerings' },
-    { src: '/images/donate_plate.jpg', title: 'Prayer Offering', category: 'spiritual', desc: 'Traditional offerings' },
-    { src: '/images/visit_courtyard.jpg', title: 'Devotees Visiting', category: 'community', desc: 'Families visiting the temple' },
-    { src: '/images/closing_lamps.jpg', title: 'Evening Lamps', category: 'temple', desc: 'Beautiful lamp decoration' },
+    { src: '/images/gallery_optimized/opt_DSC01349_1.webp', title: 'Community Gathering', category: 'community', desc: 'Devotees coming together' },
+    { src: '/images/gallery_optimized/opt_DSC01358_1.webp', title: 'Temple Events', category: 'community', desc: 'Special celebration' },
+    { src: '/images/gallery_optimized/opt_DSC01362_1.webp', title: 'Spiritual Programs', category: 'spiritual', desc: 'Devotional programs' },
+    { src: '/images/gallery_optimized/opt_DSC01368_1.webp', title: 'Prayers', category: 'spiritual', desc: 'Moments of devotion' },
+    { src: '/images/gallery_optimized/opt_DSC01404_1.webp', title: 'Festival Celebration', category: 'festival', desc: 'Grand religious festival' },
+    { src: '/images/gallery_optimized/opt_DSC01436.webp', title: 'Seva', category: 'seva', desc: 'Community service' },
+    { src: '/images/gallery_optimized/opt_DSC01439_1.webp', title: 'Temple Decor', category: 'temple', desc: 'Beautiful temple interiors' },
+    { src: '/images/gallery_optimized/opt_DSC01440_1.webp', title: 'Devotional Singing', category: 'spiritual', desc: 'Bhajans and kirtans' },
+    { src: '/images/gallery_optimized/opt_DSC01444_1.webp', title: 'Aarti Ceremony', category: 'temple', desc: 'Evening aarti Rituals' },
+    { src: '/images/gallery_optimized/opt_DSC02070_1.webp', title: 'Prasad Distribution', category: 'seva', desc: 'Serving the community' },
+    { src: '/images/gallery_optimized/opt_DSC02074_1.webp', title: 'Temple Gatherings', category: 'community', desc: 'Gathering of Devotees' },
+    { src: '/images/gallery_optimized/opt_DSC02107_1.webp', title: 'Cultural Events', category: 'festival', desc: 'Special festive events' },
+    { src: '/images/gallery_optimized/opt_DSC02110_1.webp', title: 'Devotion', category: 'spiritual', desc: 'Inner peace seekers' },
+    { src: '/images/gallery_optimized/opt_DSC02146_4.webp', title: 'Blessings', category: 'temple', desc: 'Divine blessings' },
+    { src: '/images/gallery_optimized/opt_DSC02156_6.webp', title: 'Spiritual Teaching', category: 'spiritual', desc: 'Learning and wisdom' },
+    { src: '/images/gallery_optimized/opt_DSC05090_1.webp', title: 'Joyful Moments', category: 'festival', desc: 'Celebrations' },
   ];
 
   const filters = [
@@ -58,8 +58,8 @@ export default function Gallery() {
     { key: 'temple', label: 'Temple' },
   ];
 
-  const filteredImages = activeFilter === 'all' 
-    ? galleryImages 
+  const filteredImages = activeFilter === 'all'
+    ? galleryImages
     : galleryImages.filter(img => img.category === activeFilter);
 
   return (
@@ -67,9 +67,9 @@ export default function Gallery() {
       {/* Page Header */}
       <div className="relative py-20 md:py-28 bg-espresso">
         <div className="absolute inset-0 opacity-20">
-          <img 
-            src="/images/gallery_aarti.jpg" 
-            alt="Background" 
+          <img
+            src="/images/gallery_aarti.jpg"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -92,11 +92,10 @@ export default function Gallery() {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeFilter === filter.key
-                    ? 'bg-saffron text-white'
-                    : 'bg-white text-espresso hover:bg-saffron/10 hover:text-saffron'
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter.key
+                  ? 'bg-saffron text-white'
+                  : 'bg-white text-espresso hover:bg-saffron/10 hover:text-saffron'
+                  }`}
               >
                 {filter.label}
               </button>
@@ -104,31 +103,9 @@ export default function Gallery() {
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {filteredImages.map((image, i) => (
-              <div 
-                key={i} 
-                className="animate-item group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300"
-                onClick={() => setSelectedImage(image.src)}
-              >
-                <img 
-                  src={image.src} 
-                  alt={image.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-gold text-xs font-medium uppercase tracking-wide">{image.category}</p>
-                  <h3 className="text-white font-medium text-sm">{image.title}</h3>
-                </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <ZoomIn size={24} className="text-white" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {filteredImages.length > 0 && (
+            <ImageGallery images={filteredImages} onImageSelect={setSelectedImage} />
+          )}
 
           {/* Empty State */}
           {filteredImages.length === 0 && (
@@ -141,7 +118,7 @@ export default function Gallery() {
 
       {/* Lightbox */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
@@ -151,9 +128,9 @@ export default function Gallery() {
           >
             <X size={24} />
           </button>
-          <img 
-            src={selectedImage} 
-            alt="Gallery" 
+          <img
+            src={selectedImage}
+            alt="Gallery"
             className="max-w-full max-h-[90vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
@@ -181,7 +158,7 @@ export default function Gallery() {
                 <div className="text-center">
                   <div className="w-16 h-16 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
+                      <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
                   <p className="text-taupe text-sm">Thursday Special Aarti</p>
@@ -198,7 +175,7 @@ export default function Gallery() {
                 <div className="text-center">
                   <div className="w-16 h-16 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
+                      <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
                   <p className="text-taupe text-sm">Sunday Satsang</p>

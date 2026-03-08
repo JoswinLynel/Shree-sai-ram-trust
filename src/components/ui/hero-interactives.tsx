@@ -80,12 +80,12 @@ export function HeroInteractives() {
 
     return (
         <>
-            {/* Absolute positioning for the buttons container at top right, moved down to avoid navbar overlap */}
-            <div className="absolute top-28 right-6 z-50 flex gap-3">
+            {/* Absolute positioning for the buttons container at top right, adjusted for mobile */}
+            <div className="absolute top-6 md:top-28 right-4 md:right-6 z-50 flex gap-2 md:gap-3">
                 {/* Music Button */}
                 <button
                     onClick={toggleMusic}
-                    className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg group"
+                    className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg group"
                     title={isMusicPlaying ? "Stop Music" : "Play Music"}
                 >
                     {isMusicPlaying ? (
@@ -98,7 +98,7 @@ export function HeroInteractives() {
                 {/* Flower Button */}
                 <button
                     onClick={toggleFlowers}
-                    className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg group"
+                    className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg group"
                     title={isFlowersFalling ? "Stop Flowers" : "Shower Flowers"}
                 >
                     {isFlowersFalling ? (

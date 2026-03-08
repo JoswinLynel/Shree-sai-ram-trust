@@ -11,23 +11,18 @@ export default function Donate() {
   const [customAmount, setCustomAmount] = useState('');
 
   useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(sectionRef.current.querySelectorAll('.animate-item'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }
+    gsap.set('.animate-item', { opacity: 0, y: 30 });
+
+    ScrollTrigger.batch('.animate-item', {
+      interval: 0.1,
+      batchMax: 3,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      start: 'top 85%',
+      end: 'bottom 15%',
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
@@ -55,9 +50,9 @@ export default function Donate() {
       {/* Page Header */}
       <div className="relative py-20 md:py-28 bg-espresso">
         <div className="absolute inset-0 opacity-20">
-          <img 
-            src="/images/donate_plate.jpg" 
-            alt="Background" 
+          <img
+            src="/images/donate_plate.jpg"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -89,7 +84,7 @@ export default function Donate() {
 
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
                 <h3 className="font-heading text-lg font-semibold text-espresso mb-4">Select Amount</h3>
-                
+
                 {/* Preset Amounts */}
                 <div className="grid grid-cols-3 gap-3 mb-4">
                   {donationAmounts.map((amount) => (
@@ -99,11 +94,10 @@ export default function Donate() {
                         setSelectedAmount(amount);
                         setCustomAmount('');
                       }}
-                      className={`py-3 px-4 rounded-xl font-medium transition-all duration-300 ${
-                        selectedAmount === amount
-                          ? 'bg-saffron text-white'
-                          : 'bg-cream text-espresso hover:bg-saffron/10'
-                      }`}
+                      className={`py-3 px-4 rounded-xl font-medium transition-all duration-300 ${selectedAmount === amount
+                        ? 'bg-saffron text-white'
+                        : 'bg-cream text-espresso hover:bg-saffron/10'
+                        }`}
                     >
                       ₹{amount.toLocaleString()}
                     </button>
@@ -153,9 +147,9 @@ export default function Donate() {
             {/* Right: Image & Info */}
             <div className="animate-item">
               <div className="relative rounded-2xl overflow-hidden shadow-xl mb-8">
-                <img 
-                  src="/images/donate_plate.jpg" 
-                  alt="Donation" 
+                <img
+                  src="/images/donate_plate.jpg"
+                  alt="Donation"
                   className="w-full h-64 md:h-80 object-cover"
                 />
               </div>
@@ -199,8 +193,8 @@ export default function Donate() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {causes.map((cause, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="animate-item bg-cream rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center mb-4">
@@ -257,9 +251,9 @@ export default function Donate() {
             </div>
 
             <div className="animate-item">
-              <img 
-                src="/images/seva_offering.jpg" 
-                alt="Seva" 
+              <img
+                src="/images/seva_offering.jpg"
+                alt="Seva"
                 className="rounded-3xl shadow-xl w-full h-[400px] md:h-[500px] object-cover"
               />
             </div>

@@ -102,25 +102,37 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setIsMenuOpen(true)}
             className="lg:hidden p-2 text-espresso hover:text-saffron transition-colors"
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <Menu size={28} />
           </button>
         </div>
       </header>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`fixed inset-0 z-[100] lg:hidden transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
       >
-        <div className="absolute inset-0 bg-black/50" onClick={() => setIsMenuOpen(false)} />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
         <div
-          className={`absolute right-0 top-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`absolute right-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
-          <div className="p-6 pt-20">
+          {/* Drawer Header */}
+          <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+            <img src="/images/logo.png" alt="Shree Sai Ram" className="h-10 w-auto" />
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="p-2 text-espresso hover:text-saffron bg-cream rounded-full transition-colors"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Drawer Content */}
+          <div className="p-6 overflow-y-auto flex-1">
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
@@ -142,6 +154,17 @@ export default function Layout({ children }: LayoutProps) {
               >
                 Donate Now
               </Link>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-4 text-sm text-taupe">
+              <div className="flex items-center gap-3">
+                <Phone size={18} className="text-saffron" />
+                <a href="tel:+919730802093" className="hover:text-saffron transition-colors">+91 97308 02093</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={18} className="text-saffron" />
+                <a href="mailto:shreesairamtrust@gmail.com" className="hover:text-saffron transition-colors">shreesairamtrust@gmail.com</a>
+              </div>
             </div>
           </div>
         </div>

@@ -30,25 +30,17 @@ export default function Home() {
     );
 
     // Scroll animations
-    const sections = [aboutRef, programsRef, eventsRef];
-    sections.forEach((ref) => {
-      if (ref.current) {
-        gsap.fromTo(ref.current.querySelectorAll('.animate-item'),
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: ref.current,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
+    gsap.set('.animate-item', { opacity: 0, y: 30 });
+
+    ScrollTrigger.batch('.animate-item', {
+      interval: 0.1,
+      batchMax: 3,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      start: 'top 85%',
+      end: 'bottom 15%',
     });
 
     return () => {
@@ -116,19 +108,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="mt-12 pt-8 border-t border-white/20 grid grid-cols-3 gap-6">
-              {[
-                { value: '15+', label: 'Years of Service' },
-                { value: '1000+', label: 'Devotees Daily' },
-                { value: '50+', label: 'Annual Events' },
-              ].map((stat, i) => (
-                <div key={i}>
-                  <p className="text-2xl md:text-3xl font-bold text-gold">{stat.value}</p>
-                  <p className="text-white/60 text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
 
@@ -165,8 +145,8 @@ export default function Home() {
                 }}
               >
                 <img
-                  src="/images/about_interior.jpg"
-                  alt="Temple Interior"
+                  src="/images/about_interior_saibaba.png"
+                  alt="Devotees praying to Sai Baba in the Temple"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />
               </div>
@@ -336,21 +316,21 @@ export default function Home() {
       <section className="py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/closing_lamps.jpg"
+            src="/Gifs/Add_motion_to_fire_delpmaspu_.gif"
             alt="Temple Lamps"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-bottom"
           />
-          <div className="absolute inset-0 bg-espresso/70" />
+          <div className="absolute inset-0 bg-espresso/60" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 text-center" ref={(el) => { if (el) { gsap.fromTo(el.children, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 80%" } }) } }}>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-6">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <h2 className="animate-item font-heading text-3xl md:text-5xl font-bold text-white mb-6">
             Witness Our <span className="text-gold animate-pulse inline-block">Devotion</span>
           </h2>
-          <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+          <p className="animate-item text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Explore our gallery to see the vibrant celebrations, peaceful prayers, and the community that makes Shree Sai Ram Trust special.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="animate-item flex flex-wrap justify-center gap-4">
             <Link
               to="/gallery"
               className="px-8 py-4 bg-saffron text-white rounded-full font-medium hover:bg-saffron-dark transition-all duration-300 shadow-lg"

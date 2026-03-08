@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Music, Utensils, Users, Heart, Calendar, Clock, 
-  MapPin, ChevronDown, ChevronUp, Flower 
+import {
+  Music, Utensils, Users, Heart, Calendar, Clock,
+  MapPin, ChevronDown, ChevronUp, Flower
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,23 +13,18 @@ export default function Programs() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(sectionRef.current.querySelectorAll('.animate-item'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }
+    gsap.set('.animate-item', { opacity: 0, y: 30 });
+
+    ScrollTrigger.batch('.animate-item', {
+      interval: 0.1,
+      batchMax: 3,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
+      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
+      start: 'top 85%',
+      end: 'bottom 15%',
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
@@ -37,30 +32,30 @@ export default function Programs() {
   }, []);
 
   const dailyPrograms = [
-    { 
-      icon: Music, 
-      title: 'Kakad Aarti (Morning)', 
+    {
+      icon: Music,
+      title: 'Kakad Aarti (Morning)',
       time: '6:30 AM - 7:30 AM',
       desc: 'Begin your day with the divine morning aarti dedicated to Sai Baba. Experience the peaceful atmosphere as devotees gather for the first prayers of the day.',
       activities: ['Aarti', 'Abhishek', 'Prasad Distribution']
     },
-    { 
-      icon: Utensils, 
-      title: 'Madhyan Aarti & Prasad', 
+    {
+      icon: Utensils,
+      title: 'Madhyan Aarti & Prasad',
       time: '12:00 PM - 1:00 PM',
       desc: 'Midday prayers followed by community lunch (bhandara) served to all devotees free of cost.',
       activities: ['Aarti', 'Community Lunch', 'Anna Distribution']
     },
-    { 
-      icon: Music, 
-      title: 'Dhoop Aarti (Evening)', 
+    {
+      icon: Music,
+      title: 'Dhoop Aarti (Evening)',
       time: '5:00 PM - 6:00 PM',
       desc: 'Evening prayers with devotional songs and bhajans that fill the temple with divine energy.',
       activities: ['Aarti', 'Bhajans', 'Kirtan']
     },
-    { 
-      icon: Users, 
-      title: 'Shej Aarti & Satsang', 
+    {
+      icon: Users,
+      title: 'Shej Aarti & Satsang',
       time: '7:00 PM - 8:30 PM',
       desc: 'The final aarti of the day followed by satsang, spiritual discourse, and community gathering.',
       activities: ['Aarti', 'Satsang', 'Spiritual Discourse', 'Q&A']
@@ -115,9 +110,9 @@ export default function Programs() {
       {/* Page Header */}
       <div className="relative py-20 md:py-28 bg-espresso">
         <div className="absolute inset-0 opacity-20">
-          <img 
-            src="/images/programs_bowl.jpg" 
-            alt="Background" 
+          <img
+            src="/images/programs_bowl.jpg"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -148,8 +143,8 @@ export default function Programs() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {dailyPrograms.map((program, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="animate-item bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
@@ -189,7 +184,7 @@ export default function Programs() {
               <p className="animate-item text-taupe leading-relaxed mb-8">
                 In addition to our daily programs, we host special gatherings throughout the week. Thursday is particularly significant as it is Sai Baba's day, featuring extended aartis and special prasad.
               </p>
-              
+
               <div className="animate-item bg-cream rounded-2xl p-6">
                 <h3 className="font-heading text-lg font-semibold text-espresso mb-4 flex items-center gap-2">
                   <Clock size={20} className="text-saffron" />
@@ -214,13 +209,12 @@ export default function Programs() {
 
             <div className="space-y-4">
               {weeklyPrograms.map((program, i) => (
-                <div 
-                  key={i} 
-                  className={`animate-item rounded-2xl p-6 ${
-                    program.highlight 
-                      ? 'bg-saffron text-white' 
-                      : 'bg-cream text-espresso'
-                  }`}
+                <div
+                  key={i}
+                  className={`animate-item rounded-2xl p-6 ${program.highlight
+                    ? 'bg-saffron text-white'
+                    : 'bg-cream text-espresso'
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -258,14 +252,14 @@ export default function Programs() {
 
           <div className="space-y-6">
             {upcomingEvents.map((event, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="animate-item bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="h-48 md:h-auto">
-                    <img 
-                      src={event.image} 
+                    <img
+                      src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover"
                     />
@@ -287,7 +281,7 @@ export default function Programs() {
                     </div>
                     <h3 className="font-heading text-xl font-semibold text-espresso mb-3">{event.title}</h3>
                     <p className="text-taupe text-sm mb-4">{event.description}</p>
-                    
+
                     <div className={`overflow-hidden transition-all duration-300 ${expandedEvent === i ? 'max-h-40' : 'max-h-0'}`}>
                       <div className="flex flex-wrap gap-2 pt-2">
                         {event.activities.map((activity, j) => (
@@ -297,7 +291,7 @@ export default function Programs() {
                         ))}
                       </div>
                     </div>
-                    
+
                     <button
                       onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
                       className="mt-4 text-saffron font-medium text-sm flex items-center gap-1 hover:gap-2 transition-all"
@@ -327,7 +321,7 @@ export default function Programs() {
               <p className="animate-item text-taupe leading-relaxed mb-8">
                 Service to humanity is service to God. We invite you to participate in our various seva activities. Whether you have an hour or a day to spare, your contribution makes a difference in our community.
               </p>
-              
+
               <div className="animate-item grid sm:grid-cols-2 gap-4">
                 {sevaOpportunities.map((seva, i) => (
                   <div key={i} className="flex items-start gap-3 p-4 bg-cream rounded-xl">
@@ -343,9 +337,9 @@ export default function Programs() {
               </div>
             </div>
             <div className="animate-item">
-              <img 
-                src="/images/seva_offering.jpg" 
-                alt="Seva" 
+              <img
+                src="/images/seva_offering.jpg"
+                alt="Seva"
                 className="rounded-3xl shadow-xl w-full h-[400px] object-cover"
               />
             </div>
