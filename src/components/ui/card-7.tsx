@@ -68,11 +68,11 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
                     <div className="space-y-4 transition-transform duration-500 ease-in-out group-hover:-translate-y-16">
                         <div>
                             <h3 className="text-3xl font-bold text-white">{title}</h3>
-                            <p className="text-sm text-white/80">{location}</p>
+                            <p className="text-lg font-medium text-white/90">{location}</p>
                         </div>
                         <div>
-                            <h4 className="font-semibold text-white/90">OVERVIEW</h4>
-                            <p className="text-sm text-white/70 leading-relaxed">
+                            <h4 className="font-semibold text-white/90 uppercase tracking-wide">OVERVIEW</h4>
+                            <p className="text-sm text-white/80 leading-relaxed line-clamp-3">
                                 {overview}
                             </p>
                         </div>
@@ -82,7 +82,7 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
                     <div className="absolute -bottom-20 left-0 w-full p-6 opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-0 group-hover:opacity-100">
                         <div className="flex items-end justify-between">
                             <div>
-                                <span className="text-xl font-bold text-white">{price}</span>
+                                <span className="text-2xl font-bold text-white leading-none mb-1 block">{price}</span>
                                 <span className="text-sm text-white/70"> {pricePeriod}</span>
                             </div>
                             <Button onClick={onBookNow} size="lg" className="bg-white text-black hover:bg-white/90">
