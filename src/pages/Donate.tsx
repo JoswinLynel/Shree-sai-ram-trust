@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { CTASection } from '@/components/CTASection';
 
 import { Users, Utensils, Home, Sparkles, Heart, User, Phone } from 'lucide-react';
 import HighlightCard from '@/components/ui/highlight-card';
@@ -230,6 +231,7 @@ export default function Donate() {
           </div>
         </div>
       </section>
+      <CTASection />
     </div>
   );
 }

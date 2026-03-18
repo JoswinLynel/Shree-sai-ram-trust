@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { CTASection } from '@/components/CTASection';
 
 import {
   MapPin, Phone, Mail, Clock, Send, MessageCircle,
@@ -348,6 +349,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <CTASection />
     </div>
   );
 }

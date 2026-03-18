@@ -7,6 +7,7 @@ import type { Testimonial } from '@/components/ui/glass-testimonial-swiper';
 import { VelocityScroll } from '@/components/ui/scroll-based-velocity';
 import { DottedSurface } from '@/components/ui/dotted-surface';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { CTASection } from '@/components/CTASection';
 
 
 
@@ -228,7 +229,7 @@ export default function SaiBaba() {
             <div className="animate-item">
                 <TeachingsSection />
             </div>
-
+            <CTASection />
         </div>
     );
 }

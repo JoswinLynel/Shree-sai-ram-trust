@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { CTASection } from '@/components/CTASection';
 
 import {
   Music, Utensils, Users, Heart, Calendar, Clock,
@@ -382,6 +383,7 @@ export default function Programs() {
           </div>
         </div>
       </section>
+      <CTASection />
     </div>
   );
 }

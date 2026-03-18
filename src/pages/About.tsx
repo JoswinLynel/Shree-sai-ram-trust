@@ -5,6 +5,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 import { Heart, Users, Target, Lightbulb, Flame, Globe } from 'lucide-react';
 import { AuthorCard } from '@/components/ui/content-card';
+import { CTASection } from '@/components/CTASection';
 
 
 function TeachingCard({
@@ -318,6 +319,7 @@ export default function About() {
         </div>
       </section>
 
+      <CTASection />
     </div>
   );
 }
