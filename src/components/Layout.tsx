@@ -153,7 +153,7 @@ export default function Layout({ children }: LayoutProps) {
             <div className="mt-8 flex flex-col gap-4 text-sm text-taupe">
               <div className="flex items-center gap-3">
                 <Phone size={18} className="text-saffron" />
-                <a href="tel:+919730802093" className="hover:text-saffron transition-colors">+91 97308 02093</a>
+                <a href="tel:+919322941313" className="hover:text-saffron transition-colors">+91 93229 41313 / +91 84848 65000</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-saffron" />
@@ -250,7 +250,7 @@ export default function Layout({ children }: LayoutProps) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={16} className="text-saffron flex-shrink-0" />
-                  <a href="tel:+919730802093" className="hover:text-gold transition-colors">+91 97308 02093</a>
+                  <a href="tel:+919322941313" className="hover:text-gold transition-colors">+91 93229 41313 / +91 84848 65000</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={16} className="text-saffron flex-shrink-0" />

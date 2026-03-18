@@ -31,35 +31,39 @@ export default function Programs() {
       title: 'Kakad Aarti (Morning)',
       time: '6:30 AM - 7:30 AM',
       desc: 'Begin your day with the divine morning aarti dedicated to Sai Baba. Experience the peaceful atmosphere as devotees gather for the first prayers of the day.',
-      activities: ['Aarti', 'Abhishek', 'Prasad Distribution']
+      activities: ['Aarti', 'Abhishek', 'Prasad Distribution'],
+      image: '/images/Daily_programme_images (1).png'
     },
     {
       icon: Utensils,
       title: 'Madhyan Aarti & Prasad',
       time: '12:00 PM - 1:00 PM',
       desc: 'Midday prayers followed by community lunch (bhandara) served to all devotees free of cost.',
-      activities: ['Aarti', 'Community Lunch', 'Anna Distribution']
+      activities: ['Aarti', 'Community Lunch', 'Anna Distribution'],
+      image: '/images/Daily_programme_images (2).png'
     },
     {
       icon: Music,
       title: 'Dhoop Aarti (Evening)',
       time: '5:00 PM - 6:00 PM',
       desc: 'Evening prayers with devotional songs and bhajans that fill the temple with divine energy.',
-      activities: ['Aarti', 'Bhajans', 'Kirtan']
+      activities: ['Aarti', 'Bhajans', 'Kirtan'],
+      image: '/images/Daily_programme_images (3).png'
     },
     {
       icon: Users,
       title: 'Shej Aarti & Satsang',
       time: '7:00 PM - 8:30 PM',
       desc: 'The final aarti of the day followed by satsang, spiritual discourse, and community gathering.',
-      activities: ['Aarti', 'Satsang', 'Spiritual Discourse', 'Q&A']
+      activities: ['Aarti', 'Satsang', 'Spiritual Discourse', 'Q&A'],
+      image: '/images/Daily_programme_images (4).png'
     },
   ];
 
   const weeklyPrograms = [
-    { day: 'Thursday', title: 'Sai Baba Special Aarti', time: '7:00 AM & 7:00 PM', highlight: true },
-    { day: 'Saturday', title: 'Hanuman Chalisa & Bhajans', time: '6:00 PM', highlight: false },
-    { day: 'Sunday', title: 'Special Satsang & Prasad', time: '10:00 AM - 1:00 PM', highlight: true },
+    { day: 'Thursday', title: 'Sai Baba Special Aarti', time: '7:00 AM & 7:00 PM', highlight: true, image: '/images/daily_aarti_realistic.png' },
+    { day: 'Saturday', title: 'Hanuman Chalisa & Bhajans', time: '6:00 PM', highlight: false, image: '/images/daily_satsang_realistic.png' },
+    { day: 'Sunday', title: 'Special Satsang & Prasad', time: '10:00 AM - 1:00 PM', highlight: true, image: '/images/daily_prasad_realistic.png' },
   ];
 
   const upcomingEvents = [
@@ -69,7 +73,7 @@ export default function Programs() {
       time: '7:00 AM - 6:00 PM',
       description: 'Join us for a grand celebration of Lord Ram\'s birth anniversary. The day will include special pujas, bhajans, kirtan, and community feast.',
       activities: ['Special Puja', 'Bhajan Sandhya', 'Community Bhandara', 'Cultural Programs'],
-      image: '/images/event_ramnavami_realistic.png'
+      image: '/images/Upcoming_events_images (1).png'
     },
     {
       title: 'Guru Purnima',
@@ -77,7 +81,7 @@ export default function Programs() {
       time: '7:00 AM - 6:00 PM',
       description: 'A day dedicated to honoring our spiritual teachers. Special programs including paduka puja, guru vandana, and devotional singing.',
       activities: ['Paduka Puja', 'Guru Vaudana', 'Satsang', 'Special Prasad'],
-      image: '/images/event_gurupurnima_realistic.png'
+      image: '/images/Upcoming_events_images (2).png'
     },
     {
       title: 'Sai Baba Punyatithi (Vijayadashami)',
@@ -85,7 +89,7 @@ export default function Programs() {
       time: '7:00 AM - 6:00 PM',
       description: 'Commemorating the day Sai Baba left his physical body. A day of remembrance, prayer, and reflection on his teachings.',
       activities: ['Continuous Bhajans', 'Reading of Sai Satcharitra', 'Annadan', 'Deep Daan'],
-      image: '/images/event_punyatithi_realistic.png'
+      image: '/images/Upcoming_events_images (3).png'
     },
 
   ];
@@ -125,37 +129,47 @@ export default function Programs() {
       </div>
 
       {/* Daily Programs */}
-      <section className="py-20 md:py-28 bg-cream">
+      <section className="py-12 md:py-16 bg-cream">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-            <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-sm font-medium mb-4">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-10">
+            <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
               Daily Schedule
             </span>
-            <h2 className="animate-item font-heading text-3xl md:text-4xl font-bold text-espresso mb-4">
+            <h2 className="animate-item font-heading text-3xl md:text-4xl font-bold text-espresso mb-3">
               Daily <span className="text-saffron">Programs</span>
             </h2>
-            <p className="animate-item text-taupe">
+            <p className="animate-item text-taupe text-sm md:text-base">
               Join us every day for prayers, aarti, and community gatherings
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-5">
             {dailyPrograms.map((program, i) => (
               <div
                 key={i}
-                className="animate-item bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="animate-item group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 cursor-default"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-saffron/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <program.icon size={24} className="text-saffron" />
+                {/* Background Image */}
+                <img
+                  src={program.image}
+                  alt={program.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/70 to-espresso/30 opacity-85 group-hover:opacity-90 transition-opacity duration-500" />
+
+                {/* Content */}
+                <div className="relative z-10 p-5 md:p-6 flex items-start gap-4">
+                  <div className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0 border border-white/20 group-hover:bg-saffron/30 transition-colors duration-500">
+                    <program.icon size={20} className="text-white drop-shadow-sm" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-heading text-lg font-semibold text-espresso mb-1">{program.title}</h3>
-                    <p className="text-saffron font-medium text-sm mb-3">{program.time}</p>
-                    <p className="text-taupe text-sm mb-4">{program.desc}</p>
-                    <div className="flex flex-wrap gap-2">
+                    <h3 className="font-heading text-base md:text-lg font-bold text-white mb-0.5 group-hover:text-gold transition-colors duration-300">{program.title}</h3>
+                    <p className="text-gold font-medium text-[10px] md:text-xs mb-2.5 uppercase tracking-wide">{program.time}</p>
+                    <p className="text-white/75 text-xs md:text-sm mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">{program.desc}</p>
+                    <div className="flex flex-wrap gap-1.5">
                       {program.activities.map((activity, j) => (
-                        <span key={j} className="px-3 py-1 bg-cream text-taupe text-xs rounded-full">
+                        <span key={j} className="px-2.5 py-0.5 bg-white/10 backdrop-blur-sm text-white/90 text-[10px] md:text-xs rounded-full border border-white/10">
                           {activity}
                         </span>
                       ))}
@@ -171,59 +185,86 @@ export default function Programs() {
       {/* Weekly Programs */}
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left Column */}
             <div>
-              <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 bg-[#fceee8] text-[#c94b26] rounded-full text-xs font-semibold tracking-wide mb-4">
                 Weekly Schedule
               </span>
-              <h2 className="animate-item font-heading text-3xl md:text-4xl font-bold text-espresso mb-6">
-                Weekly <span className="text-saffron">Special Programs</span>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#2a1d18] mb-6">
+                Weekly <span className="text-[#c94b26]">Special Programs</span>
               </h2>
-              <p className="animate-item text-taupe leading-relaxed mb-8">
+              <p className="text-[#746C65] md:text-lg leading-relaxed mb-8">
                 In addition to our daily programs, we host special gatherings throughout the week. Thursday is particularly significant as it is Sai Baba's day, featuring extended aartis and special prasad.
               </p>
 
-              <div className="animate-item bg-cream rounded-2xl p-6">
-                <h3 className="font-heading text-lg font-semibold text-espresso mb-4 flex items-center gap-2">
-                  <Clock size={20} className="text-saffron" />
+              <div className="bg-[#f7f5f0] rounded-2xl p-6 md:p-8">
+                <h3 className="font-heading text-xl font-bold text-[#2a1d18] mb-6 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#fceee8] rounded-full flex items-center justify-center">
+                    <Clock size={18} className="text-[#c94b26]" />
+                  </div>
                   Temple Timings
                 </h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-taupe">Opening Time</span>
-                    <span className="font-medium text-espresso">5:30 AM</span>
+                <div className="space-y-4 text-sm font-medium">
+                  <div className="flex justify-between items-center pb-4 border-b border-[#e9e4dc]">
+                    <span className="text-[#746C65]">Opening Time</span>
+                    <span className="text-[#2a1d18]">5:30 AM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-taupe">Closing Time</span>
-                    <span className="font-medium text-espresso">8:30 PM</span>
+                  <div className="flex justify-between items-center pb-4 border-b border-[#e9e4dc]">
+                    <span className="text-[#746C65]">Closing Time</span>
+                    <span className="text-[#2a1d18]">8:30 PM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-taupe">Best Time to Visit</span>
-                    <span className="font-medium text-espresso">6:00 AM - 8:00 PM</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#746C65]">Best Time to Visit</span>
+                    <span className="text-[#2a1d18]">6:00 AM - 8:00 PM</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4">
+            {/* Right Column */}
+            <div className="space-y-5 pt-10 lg:pt-0">
               {weeklyPrograms.map((program, i) => (
                 <div
                   key={i}
-                  className={`animate-item rounded-2xl p-6 ${program.highlight
-                    ? 'bg-saffron text-white'
-                    : 'bg-cream text-espresso'
-                    }`}
+                  className="animate-item relative rounded-2xl p-6 md:p-8 transition-all duration-500 cursor-default group overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1"
                 >
-                  <div className="flex items-center justify-between">
+                  {/* Background Image */}
+                  <img 
+                    src={program.image} 
+                    alt={program.title} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  {program.highlight ? (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#b44322]/95 via-[#b44322]/80 to-transparent z-0 transition-opacity duration-500 group-hover:opacity-90 mix-blend-multiply" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-0" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-r from-cream/95 via-cream/80 to-transparent backdrop-blur-[2px] z-0 transition-opacity duration-500 group-hover:opacity-90" />
+                      <div className="absolute inset-0 bg-white/40 z-0" />
+                    </>
+                  )}
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
                     <div>
-                      <p className={`text-sm font-medium mb-1 ${program.highlight ? 'text-gold' : 'text-saffron'}`}>
+                      <p className={`text-sm font-semibold mb-1 tracking-wider uppercase ${program.highlight ? 'text-gold' : 'text-saffron'}`}>
                         {program.day}
                       </p>
-                      <h3 className="font-heading text-lg font-semibold">{program.title}</h3>
+                      <h3 className={`font-heading text-xl md:text-2xl font-bold ${program.highlight ? 'text-white' : 'text-espresso'}`}>
+                        {program.title}
+                      </h3>
                     </div>
-                    <div className="text-right">
-                      <Clock size={18} className={`inline mr-1 ${program.highlight ? 'text-gold' : 'text-saffron'}`} />
-                      <span className="text-sm">{program.time}</span>
+                    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+                      program.highlight 
+                        ? 'bg-black/25 backdrop-blur-md text-white border border-white/10 shadow-inner' 
+                        : 'bg-white/70 backdrop-blur-md text-espresso border border-saffron/10 shadow-sm'
+                    }`}>
+                      <Clock size={16} className={program.highlight ? 'text-gold' : 'text-saffron'} />
+                      {program.time}
                     </div>
                   </div>
                 </div>
@@ -248,34 +289,34 @@ export default function Programs() {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {upcomingEvents.map((event, i) => (
               <div
                 key={i}
                 className="animate-item bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
               >
-                <div className="grid md:grid-cols-3 gap-0">
-                  <div className="h-48 md:h-auto">
+                <div className="flex flex-col md:flex-row">
+                  <div className="h-44 md:h-auto md:w-[260px] flex-shrink-0">
                     <img
                       src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="md:col-span-2 p-6 md:p-8">
-                    <div className="flex flex-wrap gap-3 mb-4">
-                      <span className="px-3 py-1 bg-saffron/10 text-saffron rounded-full text-sm font-medium flex items-center gap-1">
-                        <Calendar size={14} />
+                  <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <span className="px-3 py-1 bg-saffron/10 text-saffron rounded-full text-xs font-medium flex items-center gap-1">
+                        <Calendar size={12} />
                         {event.date}
                       </span>
-                      <span className="px-3 py-1 bg-cream text-taupe rounded-full text-sm flex items-center gap-1">
-                        <Clock size={14} />
+                      <span className="px-3 py-1 bg-cream text-taupe rounded-full text-xs flex items-center gap-1">
+                        <Clock size={12} />
                         {event.time}
                       </span>
                     </div>
 
-                    <h3 className="font-heading text-xl font-semibold text-espresso mb-3">{event.title}</h3>
-                    <p className="text-taupe text-sm mb-4">{event.description}</p>
+                    <h3 className="font-heading text-lg font-semibold text-espresso mb-2">{event.title}</h3>
+                    <p className="text-taupe text-sm leading-relaxed">{event.description}</p>
 
                     <div className={`overflow-hidden transition-all duration-300 ${expandedEvent === i ? 'max-h-40' : 'max-h-0'}`}>
                       <div className="flex flex-wrap gap-2 pt-2">
@@ -289,7 +330,7 @@ export default function Programs() {
 
                     <button
                       onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                      className="mt-4 text-saffron font-medium text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                      className="mt-3 text-saffron font-medium text-sm flex items-center gap-1 hover:gap-2 transition-all"
                     >
                       {expandedEvent === i ? 'Show Less' : 'Show More'}
                       {expandedEvent === i ? <ChevronUp size={16} /> : <ChevronDown size={16} />}

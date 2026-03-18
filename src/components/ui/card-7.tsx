@@ -82,8 +82,8 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
                     <div className="absolute -bottom-20 left-0 w-full p-6 opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-0 group-hover:opacity-100">
                         <div className="flex items-end justify-between">
                             <div>
-                                <span className="text-4xl font-bold text-white">{price}</span>
-                                <span className="text-white/80"> {pricePeriod}</span>
+                                <span className="text-xl font-bold text-white">{price}</span>
+                                <span className="text-sm text-white/70"> {pricePeriod}</span>
                             </div>
                             <Button onClick={onBookNow} size="lg" className="bg-white text-black hover:bg-white/90">
                                 Donate <ArrowRight className="ml-2 h-4 w-4" />

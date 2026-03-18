@@ -39,7 +39,7 @@ export default function Contact() {
 
   const contactInfo = [
     { icon: MapPin, title: 'Address', content: <p>Bk/No. 246,<br />Mukund Nagar, Ulhasnagar, Maharashtra 421002, India</p>, link: null },
-    { icon: Phone, title: 'Phone', content: '+91 97308 02093', link: 'tel:+919730802093' },
+    { icon: Phone, title: 'Phone', content: '+91 93229 41313 / +91 84848 65000', link: 'tel:+919322941313' },
     { icon: Mail, title: 'Email', content: 'shreesairamtrust@gmail.com', link: 'mailto:shreesairamtrust@gmail.com' },
     { icon: Clock, title: 'Temple Timings', content: '5:30 AM - 8:30 PM (Daily)', link: null },
   ];
@@ -138,7 +138,7 @@ export default function Contact() {
                     <Youtube size={18} />
                   </a>
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/919322941313"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-saffron/10 rounded-lg flex items-center justify-center text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
@@ -183,7 +183,7 @@ export default function Contact() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full px-4 py-3 bg-cream rounded-xl border-0 focus:ring-2 focus:ring-saffron text-espresso"
-                          placeholder="+91 97308 02093"
+                          placeholder="+91 93229 41313"
                         />
                       </div>
                     </div>

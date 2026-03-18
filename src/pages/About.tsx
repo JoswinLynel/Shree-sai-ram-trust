@@ -87,7 +87,7 @@ export default function About() {
   const trustees = [
     { name: 'Sunil Sudhamomal Somani', role: 'President', image: '/images/Trustee 1.png', objectPosition: 'center 35%' },
     { name: 'Radhika Sudhamomal Somani', role: 'Secretary', image: '/images/Trustee 2.png', objectPosition: 'center 90%' },
-    { name: 'Sandeep Gopaldas Vazirani', role: 'Treasurer', image: '/images/Trustee 3.png', objectPosition: 'center 45%' },
+    { name: 'Sandeep (Sandy) Vazirani', role: 'Treasurer', image: '/images/Trustee 3.png', objectPosition: 'center 45%' },
   ];
 
   const values = [

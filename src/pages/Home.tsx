@@ -78,15 +78,15 @@ export default function Home() {
 
 
   const programs = [
-    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings and sacred morning prayers', image: '/images/daily_aarti_realistic.png' },
-    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution bringing everyone together in service', image: '/images/daily_prasad_realistic.png' },
-    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse to end the day in peace', image: '/images/daily_satsang_realistic.png' },
+    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings and sacred morning prayers', image: '/images/Daily_programme_images (1).png' },
+    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution bringing everyone together in service', image: '/images/Daily_programme_images (2).png' },
+    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse to end the day in peace', image: '/images/Daily_programme_images (3).png' },
   ];
 
   const events = [
-    { title: 'Ram Navami', date: '27 March 2026', image: '/images/event_ramnavami_realistic.png', overview: 'Celebrate the birth of Lord Rama with special prayers, devotional songs, and community prasad distribution.' },
-    { title: 'Guru Purnima', date: '29 July 2026', image: '/images/event_gurupurnima_realistic.png', overview: 'Honor the sacred guru-disciple tradition with ceremonies, offerings, and heartfelt gratitude.' },
-    { title: 'Sai Baba Punyatithi (Vijayadashami)', date: '22 October 2026', image: '/images/event_punyatithi_realistic.png', overview: 'Commemorate Sai Baba\'s legacy with special bhajans, 108 lamp ceremony, and community seva.' },
+    { title: 'Ram Navami', date: '27 March 2026', image: '/images/Upcoming_events_images (1).png', overview: 'Celebrate the birth of Lord Rama with special prayers, devotional songs, and community prasad distribution.' },
+    { title: 'Guru Purnima', date: '29 July 2026', image: '/images/Upcoming_events_images (2).png', overview: 'Honor the sacred guru-disciple tradition with ceremonies, offerings, and heartfelt gratitude.' },
+    { title: 'Sai Baba Punyatithi (Vijayadashami)', date: '22 October 2026', image: '/images/Upcoming_events_images (3).png', overview: 'Commemorate Sai Baba\'s legacy with special bhajans, 108 lamp ceremony, and community seva.' },
 
   ];
 
@@ -98,7 +98,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/images/home_hero_realistic.png"
+            src="/images/home_hero_image.png"
             alt="Sai Baba"
             className="w-full h-full object-cover"
           />
