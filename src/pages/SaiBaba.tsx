@@ -6,6 +6,8 @@ import { TestimonialStack } from '@/components/ui/glass-testimonial-swiper';
 import type { Testimonial } from '@/components/ui/glass-testimonial-swiper';
 import { VelocityScroll } from '@/components/ui/scroll-based-velocity';
 import { DottedSurface } from '@/components/ui/dotted-surface';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +36,9 @@ export default function SaiBaba() {
             });
         }
     }, []);
+
+    useScrollReveal('.animate-item');
+
 
     const data = [
         {
@@ -172,33 +177,36 @@ export default function SaiBaba() {
     return (
         <div className="min-h-screen bg-cream w-full overflow-hidden">
             {/* Hero Section */}
-            <div ref={heroRef} className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+            <div ref={heroRef} className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
                 <div className="absolute inset-0 hero-parallax">
                     <img
                         src="/images/about_interior_saibaba.png"
                         alt="Sai Baba Shrine"
-                        className="w-full h-[130%] object-cover object-center opacity-60"
+                        className="w-full h-full object-cover opacity-30 scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/50 to-espresso/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/60 to-espresso/90" />
                 </div>
 
-                <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-8 md:mt-12">
-                    <span className="hero-animate inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
-                        A Divine Journey
-                    </span>
-                    <h1 className="hero-animate font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+                <div className="relative z-10 text-center px-6 w-full max-w-[750px] mx-auto mt-8 md:mt-12">
+                    <div className="hero-animate mb-6">
+                        <span className="inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase shadow-xl">
+                            A Divine Journey
+                        </span>
+                    </div>
+                    <h1 className="hero-animate font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                         About Sri <span className="text-gold">Sai Baba</span>
                     </h1>
-                    <p className="hero-animate text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md">
+                    <p className="hero-animate text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
                         "Sabka Malik Ek" - One God Governs All
                     </p>
                 </div>
             </div>
 
             {/* Timeline Section */}
-            <div className="-mt-12 relative z-20">
+            <div className="animate-item -mt-12 relative z-20">
                 <Timeline data={data} />
             </div>
+
 
             {/* Velocity Scroll Section */}
             <div className="py-2 md:py-6 bg-cream overflow-hidden">
@@ -217,7 +225,10 @@ export default function SaiBaba() {
             </div>
 
             {/* Teachings Section */}
-            <TeachingsSection />
+            <div className="animate-item">
+                <TeachingsSection />
+            </div>
+
         </div>
     );
 }

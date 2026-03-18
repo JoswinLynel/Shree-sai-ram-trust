@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 import { X } from 'lucide-react';
 import { ImageGallery } from '@/components/ui/image-gallery';
 
@@ -12,23 +14,14 @@ export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
-    gsap.set('.animate-item', { opacity: 0, y: 30 });
-
-    ScrollTrigger.batch('.animate-item', {
-      interval: 0.1,
-      batchMax: 3,
-      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      start: 'top 85%',
-      end: 'bottom 15%',
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
+
+
+  useScrollReveal('.animate-item');
+
 
   const galleryImages = [
     { src: '/images/gallery_optimized/opt_DSC01349_1.webp', title: 'Community Gathering', category: 'community', desc: 'Devotees coming together' },
@@ -65,23 +58,25 @@ export default function Gallery() {
   return (
     <div ref={sectionRef} className="overflow-hidden">
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+      <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">
           <img
             src="/images/gallery_aarti.jpg"
             alt="Gallery Background"
-            className="w-full h-[130%] object-cover object-center opacity-60"
+            className="w-full h-full object-cover opacity-30 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/50 to-espresso/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/60 to-espresso/90" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-8 md:mt-12">
-          <span className="animate-item inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
-            Our Gallery
-          </span>
-          <h1 className="animate-item font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+        <div className="relative z-10 text-center px-6 w-full max-w-[750px] mx-auto mt-8 md:mt-12">
+          <div className="animate-item mb-6">
+            <span className="inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase shadow-xl">
+              Our Gallery
+            </span>
+          </div>
+          <h1 className="animate-item font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             Photo <span className="text-gold">Gallery</span>
           </h1>
-          <p className="animate-item text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md">
+          <p className="animate-item text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
             Glimpses of our spiritual programs, festivals, and community gatherings
           </p>
         </div>

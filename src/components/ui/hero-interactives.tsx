@@ -81,7 +81,7 @@ export function HeroInteractives() {
     return (
         <>
             {/* Absolute positioning for the buttons container at top right, adjusted for mobile */}
-            <div className="absolute top-6 md:top-28 right-4 md:right-6 z-50 flex gap-2 md:gap-3">
+            <div className="absolute top-6 md:top-8 right-6 md:right-8 z-50 flex gap-2 md:gap-3">
                 {/* Music Button */}
                 <button
                     onClick={toggleMusic}

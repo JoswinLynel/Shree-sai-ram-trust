@@ -37,23 +37,17 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-cream flex flex-col">
-      {/* Top Bar */}
-      <div className="bg-saffron text-white py-2 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-xs md:text-sm">
-          <div className="flex items-center gap-4 md:gap-6">
-            <a href="tel:+919730802093" className="flex items-center gap-1.5 hover:text-gold transition-colors">
-              <Phone size={14} />
-              <span className="hidden sm:inline">+91 97308 02093</span>
-            </a>
-            <a href="mailto:shreesairamtrust@gmail.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
-              <Mail size={14} />
-              <span className="hidden md:inline">shreesairamtrust@gmail.com</span>
-            </a>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <MapPin size={14} />
-            <span className="hidden sm:inline">Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar</span>
-          </div>
+      {/* Top Bar - Marquee */}
+      <div className="bg-saffron text-white py-2 overflow-hidden flex relative whitespace-nowrap shimmer-bar">
+        <div className="animate-[marquee-lr_50s_linear_infinite] flex w-max">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex px-4 items-center space-x-4 text-xs md:text-sm">
+              <span>🌼 Ram Navami Celebration – 27 March 2026 | Morning Aarti at 7:00 AM | All devotees are warmly invited.</span>
+              <span>|</span>
+              <span>🌼 राम नवमी उत्सव – 27 मार्च 2026 | सुबह 7:00 बजे काकड़ आरती | सभी भक्तों का हार्दिक स्वागत है।</span>
+              <span className="pr-4">|</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -252,7 +246,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-3 text-sm text-white/70">
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="text-saffron mt-0.5 flex-shrink-0" />
-                  <span>Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar, Maharashtra 421001</span>
+                  <span>Bk/No. 246,<br />Mukund Nagar, Ulhasnagar, Maharashtra 421002, India</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={16} className="text-saffron flex-shrink-0" />
@@ -272,7 +266,18 @@ export default function Layout({ children }: LayoutProps) {
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-white/50">
               <p>© {new Date().getFullYear()} All rights reserved.</p>
-              <p>Made with devotion for the community</p>
+              <div className="flex items-center gap-4">
+                <p>Made with devotion for the community</p>
+                <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full" />
+                <a 
+                  href="https://www.esyai.co.uk" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-gold transition-colors"
+                >
+                  Made by EsyAI
+                </a>
+              </div>
             </div>
           </div>
         </div>

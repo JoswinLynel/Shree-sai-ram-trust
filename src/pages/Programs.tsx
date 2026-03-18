@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 import {
   Music, Utensils, Users, Heart, Calendar, Clock,
-  MapPin, ChevronDown, ChevronUp, Flower
+  ChevronDown, ChevronUp, Flower
+
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,23 +16,14 @@ export default function Programs() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   useEffect(() => {
-    gsap.set('.animate-item', { opacity: 0, y: 30 });
-
-    ScrollTrigger.batch('.animate-item', {
-      interval: 0.1,
-      batchMax: 3,
-      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      start: 'top 85%',
-      end: 'bottom 15%',
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
+
+
+  useScrollReveal('.animate-item');
+
 
   const dailyPrograms = [
     {
@@ -71,31 +65,29 @@ export default function Programs() {
   const upcomingEvents = [
     {
       title: 'Ram Navami Celebration',
-      date: 'April 6, 2025',
-      time: '6:00 AM - 8:00 PM',
-      location: 'Main Temple Hall',
+      date: '27 March 2026',
+      time: '7:00 AM - 6:00 PM',
       description: 'Join us for a grand celebration of Lord Ram\'s birth anniversary. The day will include special pujas, bhajans, kirtan, and community feast.',
       activities: ['Special Puja', 'Bhajan Sandhya', 'Community Bhandara', 'Cultural Programs'],
-      image: '/images/gallery_ramnavami.jpg'
+      image: '/images/event_ramnavami_realistic.png'
     },
     {
       title: 'Guru Purnima',
-      date: 'July 10, 2025',
-      time: '5:00 AM - 9:00 PM',
-      location: 'Temple Complex',
+      date: '29 July 2026',
+      time: '7:00 AM - 6:00 PM',
       description: 'A day dedicated to honoring our spiritual teachers. Special programs including paduka puja, guru vandana, and devotional singing.',
-      activities: ['Paduka Puja', 'Guru Vandana', 'Satsang', 'Special Prasad'],
-      image: '/images/gallery_gurupurnima.jpg'
+      activities: ['Paduka Puja', 'Guru Vaudana', 'Satsang', 'Special Prasad'],
+      image: '/images/event_gurupurnima_realistic.png'
     },
     {
-      title: 'Sai Baba Punyatithi',
-      date: 'October 15, 2025',
-      time: 'All Day',
-      location: 'Entire Temple Complex',
+      title: 'Sai Baba Punyatithi (Vijayadashami)',
+      date: '22 October 2026',
+      time: '7:00 AM - 6:00 PM',
       description: 'Commemorating the day Sai Baba left his physical body. A day of remembrance, prayer, and reflection on his teachings.',
       activities: ['Continuous Bhajans', 'Reading of Sai Satcharitra', 'Annadan', 'Deep Daan'],
-      image: '/images/gallery_bhajan.jpg'
+      image: '/images/event_punyatithi_realistic.png'
     },
+
   ];
 
   const sevaOpportunities = [
@@ -108,23 +100,25 @@ export default function Programs() {
   return (
     <div ref={sectionRef} className="overflow-hidden">
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+      <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">
           <img
             src="/images/programs_bowl.jpg"
             alt="Programs Background"
-            className="w-full h-[130%] object-cover object-center opacity-60"
+            className="w-full h-full object-cover opacity-30 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/50 to-espresso/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/60 to-espresso/90" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-8 md:mt-12">
-          <span className="animate-item inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
-            Programs & Events
-          </span>
-          <h1 className="animate-item font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+        <div className="relative z-10 text-center px-6 w-full max-w-[750px] mx-auto mt-8 md:mt-12">
+          <div className="animate-item mb-6">
+            <span className="inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase shadow-xl">
+              Programs & Events
+            </span>
+          </div>
+          <h1 className="animate-item font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             Programs & <span className="text-gold">Events</span>
           </h1>
-          <p className="animate-item text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md">
+          <p className="animate-item text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
             Discover our daily rituals, weekly gatherings, and special celebrations throughout the year
           </p>
         </div>
@@ -278,11 +272,8 @@ export default function Programs() {
                         <Clock size={14} />
                         {event.time}
                       </span>
-                      <span className="px-3 py-1 bg-cream text-taupe rounded-full text-sm flex items-center gap-1">
-                        <MapPin size={14} />
-                        {event.location}
-                      </span>
                     </div>
+
                     <h3 className="font-heading text-xl font-semibold text-espresso mb-3">{event.title}</h3>
                     <p className="text-taupe text-sm mb-4">{event.description}</p>
 

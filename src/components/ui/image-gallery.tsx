@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useInView } from 'framer-motion';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+
 
 export interface GalleryImage {
     src: string;
@@ -58,8 +58,6 @@ interface AnimatedImageProps {
 }
 
 function AnimatedImage({ imageData, ratio, className, onImageSelect }: AnimatedImageProps) {
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: false, amount: 0.1 });
     const [isLoading, setIsLoading] = React.useState(true);
 
     const handleError = () => {
@@ -68,18 +66,21 @@ function AnimatedImage({ imageData, ratio, className, onImageSelect }: AnimatedI
 
     return (
         <AspectRatio
-            ref={ref}
             ratio={ratio}
-            className={cn("bg-accent overflow-hidden relative size-full rounded-2xl border shadow-md group hover:shadow-xl transition-all duration-300 cursor-pointer", className)}
+            className={cn(
+                "animate-item bg-accent overflow-hidden relative size-full rounded-2xl border shadow-md group hover:shadow-xl transition-all duration-300 cursor-pointer", 
+                className
+            )}
             onClick={() => onImageSelect?.(imageData.src)}
         >
             <img
                 alt={imageData.title}
                 src={imageData.src}
                 className={cn(
-                    'size-full rounded-2xl object-cover opacity-0 translate-y-8 transition-all duration-1000 ease-in-out group-hover:scale-105',
+                    'size-full rounded-2xl object-cover transition-transform duration-1000 ease-in-out group-hover:scale-105',
                     {
-                        'opacity-100 translate-y-0': isInView && !isLoading,
+                        'opacity-0': isLoading,
+                        'opacity-100': !isLoading,
                     },
                 )}
                 onLoad={() => setIsLoading(false)}
@@ -94,3 +95,4 @@ function AnimatedImage({ imageData, ratio, className, onImageSelect }: AnimatedI
         </AspectRatio>
     );
 }
+

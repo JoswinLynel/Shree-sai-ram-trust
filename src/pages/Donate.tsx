@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 import { Heart, Check, FileText, Users, Utensils, Home, Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,23 +13,14 @@ export default function Donate() {
   const [customAmount, setCustomAmount] = useState('');
 
   useEffect(() => {
-    gsap.set('.animate-item', { opacity: 0, y: 30 });
-
-    ScrollTrigger.batch('.animate-item', {
-      interval: 0.1,
-      batchMax: 3,
-      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      start: 'top 85%',
-      end: 'bottom 15%',
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
+
+
+  useScrollReveal('.animate-item');
+
 
   const donationAmounts = [500, 1000, 2100, 5000, 11000];
 
@@ -48,24 +41,31 @@ export default function Donate() {
   return (
     <div ref={sectionRef} className="overflow-hidden">
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+      <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+        {/* Background with darker overlay */}
         <div className="absolute inset-0">
           <img
             src="/images/donate_plate.jpg"
             alt="Donate Background"
-            className="w-full h-[130%] object-cover object-center opacity-60"
+            className="w-full h-full object-cover opacity-30 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/50 to-espresso/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/60 to-espresso/90" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-8 md:mt-12">
-          <span className="animate-item inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
-            Donate
-          </span>
-          <h1 className="animate-item font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+
+        {/* Centered Content with limited width */}
+        <div className="relative z-10 text-center px-6 w-full max-w-[750px] mx-auto">
+          <div className="animate-item mb-4">
+            <span className="inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase shadow-xl">
+              Donate
+            </span>
+          </div>
+
+          <h1 className="animate-item font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight drop-shadow-lg">
             Support Our <span className="text-gold">Mission</span>
           </h1>
-          <p className="animate-item text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md">
-            Your generous contributions help us continue our spiritual and charitable work in the community
+
+          <p className="animate-item text-white/70 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
+            Your generous contributions help us continue our spiritual and charitable work in the community.
           </p>
         </div>
       </div>
@@ -265,7 +265,7 @@ export default function Donate() {
         </div>
       </section>
 
-      {/* Impact Stats */}
+      {/* Impact Stats - Hidden per request
       <section className="py-16 md:py-20 bg-saffron">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-10">
@@ -289,6 +289,7 @@ export default function Donate() {
           </div>
         </div>
       </section>
+      */}
     </div>
   );
 }

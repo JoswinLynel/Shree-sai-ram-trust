@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 import {
   MapPin, Phone, Mail, Clock, Send, MessageCircle,
   CheckCircle, Facebook, Instagram, Youtube
@@ -20,21 +22,13 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    gsap.set('.animate-item', { opacity: 0, y: 20 });
-
-    ScrollTrigger.batch('.animate-item', {
-      interval: 0.05,
-      batchMax: 6,
-      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', overwrite: true }),
-      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', overwrite: true }),
-      start: 'top 95%',
-      end: 'bottom 5%',
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
+
+  useScrollReveal('.animate-item');
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +38,7 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: MapPin, title: 'Address', content: 'Bk/No. 246, Jhulelal Mandir Road, Ulhasnagar, Maharashtra 421001', link: null },
+    { icon: MapPin, title: 'Address', content: <p>Bk/No. 246,<br />Mukund Nagar, Ulhasnagar, Maharashtra 421002, India</p>, link: null },
     { icon: Phone, title: 'Phone', content: '+91 97308 02093', link: 'tel:+919730802093' },
     { icon: Mail, title: 'Email', content: 'shreesairamtrust@gmail.com', link: 'mailto:shreesairamtrust@gmail.com' },
     { icon: Clock, title: 'Temple Timings', content: '5:30 AM - 8:30 PM (Daily)', link: null },
@@ -53,24 +47,28 @@ export default function Contact() {
   return (
     <div ref={sectionRef} className="overflow-hidden">
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
+      <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">
           <img
-            src="/images/visit_courtyard.jpg"
-            alt="Contact Background"
-            className="w-full h-[130%] object-cover object-center opacity-60"
+            src="/images/contact_hero_realistic.png"
+            alt="Contact Us"
+            className="w-full h-full object-cover opacity-30 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/50 to-espresso/90" />
+
+
+          <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/60 to-espresso/90" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-8 md:mt-12">
-          <span className="animate-item inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
-            Contact Us
-          </span>
-          <h1 className="animate-item font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
-            Get in <span className="text-gold">Touch</span>
+        <div className="relative z-10 text-center px-6 w-full max-w-[750px] mx-auto mt-8 md:mt-12">
+          <div className="animate-item mb-6">
+            <span className="inline-block px-4 py-1.5 bg-saffron/80 text-white backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase shadow-xl">
+              Get in Touch
+            </span>
+          </div>
+          <h1 className="animate-item font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+            Contact <span className="text-gold">Us</span>
           </h1>
-          <p className="animate-item text-white/90 text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md">
-            We would love to hear from you. Reach out to us for any queries or to plan your visit.
+          <p className="animate-item text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
+            We welcome your questions, suggestions, and participation in our temple activities
           </p>
         </div>
       </div>
@@ -257,7 +255,7 @@ export default function Contact() {
               Find Us on the <span className="text-saffron">Map</span>
             </h2>
             <p className="animate-item text-taupe">
-              We are located on Jhulelal Mandir Road in Ulhasnagar, easily accessible by road and public transport.
+              We are located in Mukund Nagar, Ulhasnagar, easily accessible by road and public transport.
             </p>
           </div>
 
@@ -266,7 +264,7 @@ export default function Contact() {
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               <div className="aspect-[4/3]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d73.1631!3d19.2183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7959a26aaed67%3A0x8c62e24f82e53988!2sJhulelal%20Mandir%2C%20Ulhasnagar%2C%20Maharashtra%20421001!5e0!3m2!1sen!2sin!4v1709510400000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.2762!2d73.1660!3d19.2384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjVQOStSODQsIE11a3VuZCBOYWdhciwgVWxoYXNuYWdhciwgTWFoYXJhc2h0cmEgNDIxMDAyLCBJbmRpYQ!5e0!3m2!1sen!2sin!4v1710547200000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -289,11 +287,11 @@ export default function Contact() {
                   <h3 className="font-heading text-lg font-semibold text-espresso">Shree Sai Ram Trust</h3>
                 </div>
                 <p className="text-taupe text-sm leading-relaxed mb-3">
-                  Bk/No. 246, Jhulelal Mandir Road,<br />
-                  Ulhasnagar, Maharashtra 421001
+                  Bk/No. 246,<br />
+                  Mukund Nagar, Ulhasnagar, Maharashtra 421002, India
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Jhulelal+Mandir+Road+Ulhasnagar"
+                  href="https://www.google.com/maps/search/?api=1&query=65P9%2BR84%2C+Mukund+Nagar%2C+Ulhasnagar%2C+Maharashtra+421002%2C+India"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-saffron text-white rounded-lg font-medium text-sm hover:bg-saffron-dark transition-all duration-300"

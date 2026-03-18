@@ -8,6 +8,8 @@ import {
 } from 'lucide-react';
 import { TravelCard } from '@/components/ui/card-7';
 import { HeroInteractives } from '@/components/ui/hero-interactives';
+import { GalleryCarousel } from '@/components/GalleryCarousel';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,32 +32,22 @@ export default function Home() {
     );
 
     // Scroll animations
-    gsap.set('.animate-item', { opacity: 0, y: 30 });
+    // Handled by useScrollReveal hook
 
-    ScrollTrigger.batch('.animate-item', {
-      interval: 0.1,
-      batchMax: 3,
-      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeave: batch => gsap.to(batch, { opacity: 0, y: -30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', overwrite: true }),
-      onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.inOut', overwrite: true }),
-      start: 'top 85%',
-      end: 'bottom 15%',
-    });
 
     // About section directional animations
     gsap.fromTo('.about-image',
       { opacity: 0, x: -60 },
       {
         opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-image', start: 'top 85%', toggleActions: 'play none none reverse' }
+        scrollTrigger: { trigger: '.about-image', start: 'top 85%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' }
       }
     );
     gsap.fromTo('.about-text',
       { opacity: 0, x: 60 },
       {
         opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-text', start: 'top 85%', toggleActions: 'play none none reverse' }
+        scrollTrigger: { trigger: '.about-text', start: 'top 85%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' }
       }
     );
 
@@ -64,32 +56,38 @@ export default function Home() {
       { opacity: 0, x: -60 },
       {
         opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.memorial-portrait', start: 'top 85%', toggleActions: 'play none none reverse' }
+        scrollTrigger: { trigger: '.memorial-portrait', start: 'top 85%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' }
       }
     );
     gsap.fromTo('.memorial-text',
       { opacity: 0, x: 60 },
       {
         opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.memorial-text', start: 'top 85%', toggleActions: 'play none none reverse' }
+        scrollTrigger: { trigger: '.memorial-text', start: 'top 85%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' }
       }
     );
+
 
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);
 
+  // Global scroll reveal
+  useScrollReveal('.animate-item');
+
+
   const programs = [
-    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings and sacred morning prayers', image: '/images/gallery_aarti.jpg' },
-    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution bringing everyone together in service', image: '/images/gallery_prasad.jpg' },
-    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse to end the day in peace', image: '/images/gallery_bhajan.jpg' },
+    { icon: Music, title: 'Morning Aarti', time: '6:30 AM', desc: 'Start your day with divine blessings and sacred morning prayers', image: '/images/daily_aarti_realistic.png' },
+    { icon: Utensils, title: 'Afternoon Prasad', time: '12:00 PM', desc: 'Community meal distribution bringing everyone together in service', image: '/images/daily_prasad_realistic.png' },
+    { icon: Music, title: 'Evening Satsang', time: '7:00 PM', desc: 'Bhajans and spiritual discourse to end the day in peace', image: '/images/daily_satsang_realistic.png' },
   ];
 
   const events = [
-    { title: 'Ram Navami', date: 'April 6, 2025', image: '/images/event_ramnavami.png', overview: 'Celebrate the birth of Lord Rama with special prayers, devotional songs, and community prasad distribution.' },
-    { title: 'Guru Purnima', date: 'July 10, 2025', image: '/images/event_gurupurnima.png', overview: 'Honor the sacred guru-disciple tradition with ceremonies, offerings, and heartfelt gratitude.' },
-    { title: 'Sai Baba Punyatithi', date: 'October 15, 2025', image: '/images/event_punyatithi.png', overview: 'Commemorate Sai Baba\'s legacy with special bhajans, 108 lamp ceremony, and community seva.' },
+    { title: 'Ram Navami', date: '27 March 2026', image: '/images/event_ramnavami_realistic.png', overview: 'Celebrate the birth of Lord Rama with special prayers, devotional songs, and community prasad distribution.' },
+    { title: 'Guru Purnima', date: '29 July 2026', image: '/images/event_gurupurnima_realistic.png', overview: 'Honor the sacred guru-disciple tradition with ceremonies, offerings, and heartfelt gratitude.' },
+    { title: 'Sai Baba Punyatithi (Vijayadashami)', date: '22 October 2026', image: '/images/event_punyatithi_realistic.png', overview: 'Commemorate Sai Baba\'s legacy with special bhajans, 108 lamp ceremony, and community seva.' },
+
   ];
 
   return (
@@ -100,7 +98,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/images/hero_saibaba.png"
+            src="/images/home_hero_realistic.png"
             alt="Sai Baba"
             className="w-full h-full object-cover"
           />
@@ -129,14 +127,14 @@ export default function Home() {
                 to="/programs"
                 className="group px-8 py-4 bg-saffron text-white rounded-full font-medium hover:bg-saffron-dark transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
               >
-                Explore Programs
+                View Latest Event
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/contact"
+                to="/gallery"
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full font-medium hover:bg-white/20 transition-all duration-300"
               >
-                Plan Your Visit
+                Gallery
               </Link>
             </div>
 
@@ -231,7 +229,7 @@ export default function Home() {
       </section>
 
       {/* Memorial Tribute Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="pt-16 md:pt-20 pb-0 bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
           {/* Decorative divider */}
           <div className="flex items-center justify-center gap-4 mb-10">
@@ -273,7 +271,7 @@ export default function Home() {
           </div>
 
           {/* Bottom divider */}
-          <div className="flex items-center justify-center gap-4 mt-10">
+          <div className="flex items-center justify-center gap-4 mt-8">
             <div className="h-px w-16 bg-saffron/30" />
             <span className="text-saffron/60 text-xl">✦</span>
             <div className="h-px w-16 bg-saffron/30" />
@@ -282,7 +280,7 @@ export default function Home() {
       </section>
 
       {/* Programs Section */}
-      <section ref={programsRef} className="py-20 md:py-28 bg-white">
+      <section ref={programsRef} className="pt-8 md:pt-12 pb-12 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
             <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-sm font-medium mb-4">
@@ -354,8 +352,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gallery Carousel Section */}
+      <section className="pt-12 pb-20 bg-white overflow-hidden border-t border-saffron/10">
+        <div className="text-center max-w-3xl mx-auto mb-10 px-4">
+          <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-sm font-medium mb-4">
+            Glimpses of Devotion
+          </span>
+          <h2 className="animate-item font-heading text-3xl md:text-5xl font-bold text-espresso">
+            Temple Moments & <span className="text-saffron">Celebrations</span>
+          </h2>
+        </div>
+        <GalleryCarousel />
+        
+        <div className="text-center mt-10 px-4">
+          <Link
+            to="/gallery"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-saffron text-white rounded-full font-medium hover:bg-saffron-dark transition-all duration-300 shadow-lg hover:shadow-xl group"
+          >
+            View All Gallery
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </section>
+
       {/* Events Section */}
-      <section ref={eventsRef} className="py-20 md:py-28 bg-cream">
+      <section ref={eventsRef} className="py-20 md:py-28 bg-cream border-t border-saffron/10">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
             <div>
@@ -399,9 +420,9 @@ export default function Home() {
       <section className="py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/Gifs/Add_motion_to_fire_delpmaspu_.gif"
-            alt="Temple Lamps"
-            className="w-full h-full object-cover object-bottom"
+            src="/Gifs/devotion_bg.gif"
+            alt="Temple Devotion"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-espresso/60" />
         </div>
