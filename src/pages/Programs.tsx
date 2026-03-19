@@ -6,8 +6,7 @@ import { CTASection } from '@/components/CTASection';
 
 import {
   Music, Utensils, Users, Heart, Calendar, Clock,
-  ChevronDown, ChevronUp, Flower
-
+  ChevronDown, ChevronUp, Flower, Sparkles, User, Phone
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -129,8 +128,109 @@ export default function Programs() {
         </div>
       </div>
 
+      {/* Ram Navami Celebration Event Section */}
+      <section className="py-10 md:py-14 bg-gradient-to-br from-cream to-white relative overflow-hidden">
+        {/* Soft background glow */}
+        <div className="absolute top-0 right-1/4 w-[300px] h-[300px] bg-saffron/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[250px] h-[250px] bg-gold/5 rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Content */}
+            <div className="animate-item">
+              <span className="animate-pulse-saffron inline-block px-3 py-1 bg-saffron/10 text-saffron rounded-full text-[10px] font-semibold tracking-wider uppercase mb-3 shadow-[0_0_10px_rgba(235,123,38,0.1)]">
+                Upcoming Event
+              </span>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-espresso mb-3 leading-tight drop-shadow-sm">
+                Ram Navami <span className="text-saffron">Celebration</span>
+              </h2>
+              <p className="text-saffron font-semibold mb-4 text-lg flex items-center gap-2">
+                <Calendar className="w-4 h-4" /> 27 March 2026
+              </p>
+              <p className="text-taupe md:text-base leading-relaxed mb-4 font-light max-w-lg">
+                Ram Navami will be celebrated with deep devotion. All devotees are lovingly invited to join the sacred festivities.
+              </p>
+              <p className="text-espresso font-medium md:text-base leading-relaxed mb-5 max-w-lg border-l-4 border-saffron/60 pl-4 bg-saffron/5 py-1.5 pr-4 rounded-r-lg">
+                Celebration begins at <span className="text-saffron font-bold">7:00 AM</span> with Morning Aarti. Further programs will be announced.
+              </p>
+
+              {/* Supporting Elements */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {[
+                  { label: 'Aarti', icon: Music },
+                  { label: 'Celebration', icon: Sparkles },
+                  { label: 'Seva', icon: Heart },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-saffron/20 shadow-sm hover:border-saffron/40 hover:shadow-md transition-all cursor-default">
+                    <item.icon size={12} className="text-saffron" />
+                    <span className="text-xs font-medium text-espresso">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Contact Card */}
+              <div className="relative bg-white rounded-2xl p-4 md:p-5 shadow-[0_4px_20px_rgb(0,0,0,0.06)] border border-saffron/20 group hover:border-saffron/40 transition-colors duration-500 max-w-md">
+                {/* Decorative Line */}
+                <div className="absolute top-0 left-5 right-5 h-[2px] bg-gradient-to-r from-transparent via-saffron/30 to-transparent opacity-50 group-hover:via-saffron/50 transition-all duration-500" />
+                
+                <h3 className="font-heading text-base text-espresso font-semibold mb-4 flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-saffron/10 flex items-center justify-center shadow-inner group-hover:bg-saffron/20 transition-colors duration-500">
+                    <Heart size={14} className="text-saffron" />
+                  </div>
+                  Contact for Seva & Participation
+                </h3>
+                
+                <div className="space-y-2">
+                  {/* Name */}
+                  <div className="flex items-center gap-3 p-2 rounded-xl bg-cream/50 group-hover:bg-cream transition-colors duration-500 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-saffron/10 flex items-center justify-center flex-shrink-0 relative z-10">
+                      <User size={14} className="text-saffron" />
+                    </div>
+                    <div className="relative z-10">
+                      <p className="text-[9px] text-taupe uppercase tracking-widest font-semibold mb-0.5">Contact Person</p>
+                      <p className="font-medium text-espresso text-sm">Sandeep (Sandy) Vazirani</p>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-center gap-3 p-2 rounded-xl bg-cream/50 group-hover:bg-cream transition-colors duration-500 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 delay-100" />
+                    <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-saffron/10 flex items-center justify-center flex-shrink-0 relative z-10">
+                      <Phone size={14} className="text-saffron" />
+                    </div>
+                    <div className="relative z-10">
+                      <p className="text-[9px] text-taupe uppercase tracking-widest font-semibold mb-0.5">Phone</p>
+                      <div className="flex flex-wrap gap-1.5 items-center">
+                        <a href="tel:+919322941313" className="font-semibold text-espresso hover:text-saffron transition-colors text-sm">93229 41313</a>
+                        <span className="text-taupe/40 text-xs">|</span>
+                        <a href="tel:+918484865000" className="font-semibold text-espresso hover:text-saffron transition-colors text-sm">84848 65000</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Devotional Image */}
+            <div className="animate-item relative">
+              <div className="animate-pulse-saffron relative rounded-2xl md:rounded-[2rem] overflow-hidden shadow-xl p-1.5 md:p-2 bg-white/60 backdrop-blur-md border border-white/80 group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-saffron/30 to-gold/30 rounded-2xl md:rounded-[2.5rem] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+                <img
+                  src="/images/Upcoming_events_images (1).png"
+                  alt="Ram Navami Celebration"
+                  className="relative z-10 w-full h-[280px] md:h-[380px] object-cover rounded-[1rem] md:rounded-[1.5rem] shadow-inner transform group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+                />
+                {/* Soft overlay gradient on image */}
+                <div className="absolute bottom-1.5 left-1.5 right-1.5 h-1/2 bg-gradient-to-t from-espresso/70 via-espresso/20 to-transparent z-20 rounded-b-[1rem] md:rounded-b-[1.5rem] pointer-events-none opacity-80" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Daily Programs */}
-      <section className="py-12 md:py-16 bg-cream">
+      <section className="py-12 md:py-16 bg-cream border-t border-saffron/10">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-10">
             <span className="animate-item inline-block px-4 py-1.5 bg-saffron/10 text-saffron rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
