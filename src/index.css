@@ -231,6 +231,12 @@
     100% { transform: translateX(250%) skewX(-20deg); }
   }
 
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    /* Translate exactly by 1/3 of the width if duplicated 3 times */
+    100% { transform: translateX(calc(-33.33333333% - 1rem)); } 
+  }
+
   .animate-pulse-saffron {
     animation: pulse-saffron 2s infinite;
   }
