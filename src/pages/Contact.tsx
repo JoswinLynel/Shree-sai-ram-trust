@@ -42,7 +42,7 @@ export default function Contact() {
   const contactInfo = [
     { icon: MapPin, title: 'Address', content: <p>Bk/No. 246,<br />Mukund Nagar, Ulhasnagar, Maharashtra 421002, India</p>, link: null },
     { icon: Phone, title: 'Phone', content: '+91 93229 41313 / +91 84848 65000', link: 'tel:+919322941313' },
-    { icon: Mail, title: 'Email', content: 'shreesairamtrust@gmail.com', link: 'mailto:shreesairamtrust@gmail.com' },
+    { icon: Mail, title: 'Email', content: 'info@shreesaibabatrust.org', link: 'mailto:info@shreesaibabatrust.org' },
     { icon: Clock, title: 'Temple Timings', content: '5:30 AM - 8:30 PM (Daily)', link: null },
   ];
 

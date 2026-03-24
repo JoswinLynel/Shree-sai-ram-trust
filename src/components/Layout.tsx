@@ -157,7 +157,7 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-saffron" />
-                <a href="mailto:shreesairamtrust@gmail.com" className="hover:text-saffron transition-colors">shreesairamtrust@gmail.com</a>
+                <a href="mailto:info@shreesaibabatrust.org" className="hover:text-saffron transition-colors">info@shreesaibabatrust.org</a>
               </div>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function Layout({ children }: LayoutProps) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={16} className="text-saffron flex-shrink-0" />
-                  <a href="mailto:shreesairamtrust@gmail.com" className="hover:text-gold transition-colors">shreesairamtrust@gmail.com</a>
+                  <a href="mailto:info@shreesaibabatrust.org" className="hover:text-gold transition-colors">info@shreesaibabatrust.org</a>
                 </li>
               </ul>
             </div>
