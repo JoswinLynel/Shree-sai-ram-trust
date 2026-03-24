@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 import {
   MapPin, Phone, Mail, Clock, Send, MessageCircle,
@@ -47,6 +48,11 @@ export default function Contact() {
 
   return (
     <div ref={sectionRef} className="overflow-hidden">
+      <SEOHead
+        title="Contact Us – Temple Address, Phone & Directions"
+        description="Contact Shree Sai Ram Trust in Ulhasnagar. Visit us at Bk/No. 246, Mukund Nagar, or call +91 93229 41313. Temple timings 5:30 AM – 8:30 PM daily."
+        keywords="Shree Sai Ram Trust contact, Ulhasnagar temple address, temple phone number, temple directions, visit Sai Baba temple"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">

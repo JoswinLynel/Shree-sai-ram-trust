@@ -11,6 +11,7 @@ import { HeroInteractives } from '@/components/ui/hero-interactives';
 import { GalleryCarousel } from '@/components/GalleryCarousel';
 import { CTASection } from '@/components/CTASection';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SEOHead } from '@/components/SEOHead';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,6 +94,11 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
+      <SEOHead
+        title="Shree Sai Ram Trust – Sai Baba Temple in Ulhasnagar | Daily Aarti & Satsang"
+        description="Shree Sai Ram Trust is a Sai Baba temple in Ulhasnagar, Maharashtra, established in 1993. Join daily aarti, satsang, community prasad, and spiritual programs guided by Sai Baba's teachings of Shraddha & Saburi."
+        keywords="Shree Sai Ram Trust, Sai Baba temple Ulhasnagar, Shirdi Sai Baba, daily aarti, satsang, prasad, Hindu temple Maharashtra, Shraddha Saburi, साई बाबा मंदिर उल्हासनगर"
+      />
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center">
         <HeroInteractives />

@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 import { X } from 'lucide-react';
 import { ImageGallery } from '@/components/ui/image-gallery';
@@ -58,6 +59,11 @@ export default function Gallery() {
 
   return (
     <div ref={sectionRef} className="overflow-hidden">
+      <SEOHead
+        title="Gallery – Temple Photos & Celebrations"
+        description="Browse photos of Shree Sai Ram Trust temple, aarti ceremonies, festivals, seva activities, and community celebrations in Ulhasnagar."
+        keywords="Sai Baba temple photos, Ulhasnagar temple gallery, aarti photos, festival celebrations, temple events"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">

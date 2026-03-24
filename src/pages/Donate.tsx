@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 import { Users, Utensils, Home, Sparkles, Heart, User, Phone } from 'lucide-react';
 import HighlightCard from '@/components/ui/highlight-card';
@@ -22,6 +23,11 @@ export default function Donate() {
 
   return (
     <div ref={sectionRef} className="overflow-hidden">
+      <SEOHead
+        title="Donate – Support Our Mission & Seva"
+        description="Support Shree Sai Ram Trust through donations. Contribute to daily prasad seva, temple maintenance, festival celebrations, and community charitable activities."
+        keywords="donate Sai Baba temple, support Shree Sai Ram Trust, prasad seva, temple donation, charitable trust Ulhasnagar"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         {/* Background with darker overlay */}

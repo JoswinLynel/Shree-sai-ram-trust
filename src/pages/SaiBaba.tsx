@@ -8,6 +8,7 @@ import { VelocityScroll } from '@/components/ui/scroll-based-velocity';
 import { DottedSurface } from '@/components/ui/dotted-surface';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 
 
@@ -177,6 +178,11 @@ export default function SaiBaba() {
 
     return (
         <div className="min-h-screen bg-cream w-full overflow-hidden">
+            <SEOHead
+                title="Sai Baba – Life, Teachings & History"
+                description="Explore the life and teachings of Shirdi Sai Baba — his arrival in Shirdi, message of Shraddha & Saburi, miracles, and Mahasamadhi. Learn about Sabka Malik Ek."
+                keywords="Shirdi Sai Baba history, Sai Baba teachings, Shraddha Saburi, Sabka Malik Ek, Sai Baba miracles, Dwarkamai, Mahasamadhi"
+            />
             {/* Hero Section */}
             <div ref={heroRef} className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
                 <div className="absolute inset-0 hero-parallax">

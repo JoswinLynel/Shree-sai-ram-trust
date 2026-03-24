@@ -1,0 +1,28 @@
+# Shree Sai Ram Trust - robots.txt
+# Allow all crawlers including AI bots
+
+User-agent: *
+Allow: /
+Sitemap: https://shreesairamtrust.org/sitemap.xml
+
+# AI Search Bots - Explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /

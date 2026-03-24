@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 import {
   Music, Utensils, Users, Heart, Calendar, Clock,
@@ -103,6 +104,11 @@ export default function Programs() {
 
   return (
     <div ref={sectionRef} className="overflow-hidden">
+      <SEOHead
+        title="Programs & Events – Daily Aarti, Satsang & Celebrations"
+        description="View daily programs including Kakad Aarti, Madhyan Aarti, evening satsang, weekly specials like Thursday Sai Baba Aarti, and upcoming events at Shree Sai Ram Trust, Ulhasnagar."
+        keywords="Sai Baba aarti timings, satsang Ulhasnagar, temple programs, Ram Navami, Guru Purnima, seva opportunities, bhajans"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0">

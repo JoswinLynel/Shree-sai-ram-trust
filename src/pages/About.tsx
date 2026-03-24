@@ -6,6 +6,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Heart, Users, Target, Lightbulb, Flame, Globe } from 'lucide-react';
 import { AuthorCard } from '@/components/ui/content-card';
 import { CTASection } from '@/components/CTASection';
+import { SEOHead } from '@/components/SEOHead';
 
 
 function TeachingCard({
@@ -120,6 +121,11 @@ export default function About() {
 
   return (
     <div ref={sectionRef} className="overflow-hidden">
+      <SEOHead
+        title="About Us – Our Story, Trustees & Mission"
+        description="Learn about Shree Sai Ram Trust, established in 1993 in Ulhasnagar in memory of Late Shri Sudhamomal G. Somani. Discover our mission, trustees, and core values inspired by Sai Baba's teachings."
+        keywords="about Shree Sai Ram Trust, Ulhasnagar temple history, Sudhamomal Somani, Sai Baba mission, temple trustees, core values"
+      />
       {/* Hero Section */}
       <div ref={heroRef} className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-espresso">
         <div className="absolute inset-0 hero-parallax">
