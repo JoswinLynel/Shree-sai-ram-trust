@@ -1,45 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
   <url>
     <loc>https://shreesairamtrust.org/</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/home_hero_image.png</image:loc>
+      <image:title>Shree Sai Ram Trust – Sai Baba Temple Ulhasnagar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/about_interior_saibaba.png</image:loc>
+      <image:title>Devotees praying at Sai Baba Temple</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/sai-baba</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/saibaba_early_1.jpg</image:loc>
+      <image:title>Sai Baba Early Life</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/saibaba_teachings_2.jpg</image:loc>
+      <image:title>Sai Baba Teachings</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/about</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/about_hero_realistic.png</image:loc>
+      <image:title>About Shree Sai Ram Trust</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/programs</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/programs_bowl.jpg</image:loc>
+      <image:title>Temple Programs and Events</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/Upcoming_events_images%20(1).png</image:loc>
+      <image:title>Ram Navami Celebration</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/gallery</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/gallery_aarti.jpg</image:loc>
+      <image:title>Aarti Ceremony at Shree Sai Ram Trust</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/donate</loc>
     <lastmod>2026-03-24</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/donate_seva_image.png</image:loc>
+      <image:title>Daily Prasad Seva – Donate to Shree Sai Ram Trust</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shreesairamtrust.org/contact</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://shreesairamtrust.org/images/contact_hero_realistic.png</image:loc>
+      <image:title>Contact Shree Sai Ram Trust Ulhasnagar</image:title>
+    </image:image>
   </url>
 </urlset>
