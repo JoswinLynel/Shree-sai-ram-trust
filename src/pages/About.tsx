@@ -86,9 +86,9 @@ export default function About() {
 
 
   const trustees = [
-    { name: 'Sunil Sudhamomal Somani', role: 'President', image: '/images/Trustee 1.png', objectPosition: 'center 35%' },
-    { name: 'Radhika Sudhamomal Somani', role: 'Secretary', image: '/images/Trustee 2.png', objectPosition: 'center 90%' },
-    { name: 'Sandeep (Sandy) Vazirani', role: 'Treasurer', image: '/images/Trustee 3.png', objectPosition: 'center 45%' },
+    { name: 'Sunil Sudhamomal Somani', image: '/images/Trustee 1.png', objectPosition: 'center 35%' },
+    { name: 'Radhika Sudhamomal Somani', image: '/images/Trustee 2.png', objectPosition: 'center 90%' },
+    { name: 'Sandeep (Sandy) Vazirani', image: '/images/Trustee 3.png', objectPosition: 'center 45%' },
   ];
 
   const values = [
@@ -310,8 +310,7 @@ export default function About() {
                     style={{ objectPosition: trustee.objectPosition ?? 'center top' }}
                   />
                 </div>
-                <h3 className="animate-item font-heading text-lg font-semibold text-espresso mb-1">{trustee.name}</h3>
-                <p className="animate-item text-taupe text-sm uppercase tracking-wider">{trustee.role}</p>
+                <h3 className="animate-item font-heading text-lg font-semibold text-espresso">{trustee.name}</h3>
               </div>
 
             ))}
