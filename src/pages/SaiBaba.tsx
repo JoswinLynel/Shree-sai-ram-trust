@@ -201,7 +201,7 @@ export default function SaiBaba() {
                         </span>
                     </div>
                     <h1 className="hero-animate font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                        About Sri <span className="text-gold">Sai Baba</span>
+                        About Shree <span className="text-gold">Sai Baba</span>
                     </h1>
                     <p className="hero-animate text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto">
                         "Sabka Malik Ek" - One God Governs All
