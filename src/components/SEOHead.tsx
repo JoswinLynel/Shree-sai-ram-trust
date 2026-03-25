@@ -10,7 +10,7 @@ interface SEOHeadProps {
 
 const BASE_URL = 'https://shreesairamtrust.org';
 const SITE_NAME = 'Shree Sai Ram Trust';
-const DEFAULT_OG_IMAGE = '/images/home_hero_image.png';
+const DEFAULT_OG_IMAGE = '/images/home_hero_image.webp';
 
 function setMetaTag(attr: string, key: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;

@@ -105,7 +105,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/images/home_hero_image.png"
+            src="/images/home_hero_image.webp"
             alt="Sai Baba"
             className="w-full h-full object-cover"
           />
